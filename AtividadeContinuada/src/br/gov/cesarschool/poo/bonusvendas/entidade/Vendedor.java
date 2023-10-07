@@ -26,7 +26,17 @@ public class Vendedor {
 		this.dataNascimento = dataNascimento;
 		this.renda = renda;
 		this.endereco = endereco;
+		
+		
+//		criacao de caixabonus
 		CaixaDeBonus cx = new CaixaDeBonus(createCaixaCodigo());
+		System.out.println(cx.getNumero());
+		
+		cx.creditar(1000);
+		cx.debitar(400);
+		System.out.println(cx.getSaldo());
+		
+		
 	}
 	//Methods
 	
@@ -41,9 +51,9 @@ public class Vendedor {
 	
 	private long createCaixaCodigo() {
  
-		String primeirosNoveCPF = cpf.substring(0,8);
+		String primeirosNoveCPF = cpf.substring(0,9);
 		LocalDate dataAtual = LocalDate.now();
-		long codigo = Long.parseLong(primeirosNoveCPF+dataAtual.getYear()+dataAtual.getMonth()+dataAtual.getDayOfMonth());
+		long codigo = Long.parseLong(primeirosNoveCPF+dataAtual.getYear()+dataAtual.getMonthValue()+dataAtual.getDayOfMonth());
 		
 		return codigo;
 	}
