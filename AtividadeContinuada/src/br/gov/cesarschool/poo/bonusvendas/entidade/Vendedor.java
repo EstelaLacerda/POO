@@ -1,6 +1,7 @@
 package br.gov.cesarschool.poo.bonusvendas.entidade;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 import br.gov.cesarschool.poo.bonusvendas.entidade.geral.Endereco;
 import br.gov.cesarschool.poo.bonusvendas.entidade.geral.Sexo;
@@ -72,6 +73,16 @@ public class Vendedor {
 		return cpf;
 	}
 	
+	//Methods
+	
+	public int calcularIdade() {
+		
+		LocalDate dataAtual = LocalDate.now();
+		Period idadeCompleta = Period.between(dataNascimento, dataAtual);
+		int idade = idadeCompleta.getYears();
+		
+		return idade;
+	}
 
 //	TODO:
 //		OK Atributos: devem ser privados
