@@ -15,7 +15,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		LocalDate dtN = LocalDate.of(1990, 5, 15);
+		LocalDate dtN = LocalDate.of(1993, 8, 11);
 		Endereco ender = new Endereco("rua barbie", 6969, "tome", "55666", "recife", "pernambuco",
 			"braziu");
 		
