@@ -26,6 +26,9 @@ public class CaixaDeBonus {
 	public LocalDateTime getDataHoraAtualizacao() {
 		return dataHoraAtualizacao;
 	}
+	
+	//Methods
+	
 
 //	TODO:
 //		OK Atributos: devem ser privados
