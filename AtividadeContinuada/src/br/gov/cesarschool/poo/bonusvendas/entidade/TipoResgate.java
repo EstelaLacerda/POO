@@ -6,12 +6,25 @@ public enum TipoResgate  {
 	SERVICO (2,"Servico"),
 	CASH 	(3,"Cash");
 	
+	//Attributes
 	private int codigo;
 	private String descricao;
 	
+	//Constructor
 	private TipoResgate(int codigo, String descricao) {
 		this.codigo = codigo;
 		this.descricao = descricao;
 	}
+	
+	//Getters
+	public int getCodigo() {
+		return codigo;
+	}
+	public String getDescricao() {
+		return descricao;
+	}
+	
+	// TODO Não foi pedido, mas é possível incluir um método obterPorCodigo() caso seja necessário.
+	
 	
 }

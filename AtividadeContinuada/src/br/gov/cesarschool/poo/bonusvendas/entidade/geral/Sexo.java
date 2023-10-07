@@ -5,12 +5,24 @@ public enum Sexo {
 	FEMININO  (1,"Feminino"),
 	MASCULINO (2,"Masculino");
 	
+	//Attributes
 	private int codigo;
 	private String descricao;
 	
+	//Constructor
 	private Sexo (int codigo, String descricao) {
 		this.codigo = codigo;
 		this.descricao = descricao;
 	}
-
+	
+	//Getters
+	public int getCodigo() {
+		return codigo;
+	}
+	
+	public String getDescricao() {
+		return descricao;
+	}
+	
+	// TODO Não foi pedido, mas é possível incluir um método obterPorCodigo() caso seja necessário.
 }

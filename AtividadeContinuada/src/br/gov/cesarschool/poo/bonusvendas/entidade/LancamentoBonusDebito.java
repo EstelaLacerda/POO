@@ -1,10 +1,27 @@
 package br.gov.cesarschool.poo.bonusvendas.entidade;
 
-public class LancamentoBonusDebito extends LancamentoBonus{
+import java.time.LocalDateTime;
 
+public class LancamentoBonusDebito extends LancamentoBonus{
+	
+	//Attributes
 	TipoResgate tipoResgate;
-	public LancamentoBonusDebito() {
-		// TODO Construtor: deve inicializar todos os atributos.
+
+	//Constructor
+	public LancamentoBonusDebito(long numeroCaixaDeBonus, double valor, LocalDateTime dataHoraLancamento,
+			TipoResgate tipoResgate) {
+		super(numeroCaixaDeBonus, valor, dataHoraLancamento);
+		this.tipoResgate = tipoResgate;
 	}
-	// TODO Métodos: get público para tipoResgate.
+
+	public TipoResgate getTipoResgate() {
+		return tipoResgate;
+	}
+	
+	
+//	TODO:
+//		OK Atributos: os herdados e... tipoResgate – br.gov.cesarschool.poo.bonusvendas.entidade.TipoResgate
+//		OK Construtor: deve inicializar todos os atributos.
+//		OK Métodos: get público para tipoResgate.
+	
 }
