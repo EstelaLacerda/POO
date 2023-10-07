@@ -1,8 +1,9 @@
 package br.gov.cesarschool.poo.bonusvendas.entidade;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class CaixaDeBonus {
+public class CaixaDeBonus implements Serializable {
 
 	// Attributes
 	private long numero;
@@ -45,9 +46,9 @@ public class CaixaDeBonus {
 //	TODO:
 //		OK Atributos: devem ser privados
 //		OK Construtor: deve inicializar o numero.
-//		TODO Métodos:
-//			OK gets públicos para todos os atributos.
-//			TODO void creditar(dobule valor): deve adicionar ao saldo atual valor, e atualizar dataHoraAtualizacao com a data atual.
-//			TODO void debitar(dobule valor): deve subtrair do saldo atual valor, e atualizar a dataHoraAtualizacao com a data atual.
+//		 Métodos:
+//			 OK gets públicos para todos os atributos.
+//			 OK void creditar(dobule valor): deve adicionar ao saldo atual valor, e atualizar dataHoraAtualizacao com a data atual.
+//			 OK void debitar(dobule valor): deve subtrair do saldo atual valor, e atualizar a dataHoraAtualizacao com a data atual.
 
 }

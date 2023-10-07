@@ -1,12 +1,15 @@
 package br.gov.cesarschool.poo.bonusvendas.entidade;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 
 import br.gov.cesarschool.poo.bonusvendas.entidade.geral.Endereco;
 import br.gov.cesarschool.poo.bonusvendas.entidade.geral.Sexo;
 
-public class Vendedor {
+import br.gov.cesarschool.poo.bonusvendas.dao.VendedorDAO;
+
+public class Vendedor implements Serializable{
 	
 	//Attributes
 	private String cpf;
@@ -28,13 +31,17 @@ public class Vendedor {
 		this.endereco = endereco;
 		
 		
-//		criacao de caixabonus
-		CaixaDeBonus cx = new CaixaDeBonus(createCaixaCodigo());
-		System.out.println(cx.getNumero());
+		new VendedorDAO().incluir(this);
+
 		
-		cx.creditar(1000);
-		cx.debitar(400);
-		System.out.println(cx.getSaldo());
+		
+//		criacao de caixabonus
+//		CaixaDeBonus cx = new CaixaDeBonus(createCaixaCodigo());
+//		System.out.println(cx.getNumero());
+//		
+//		cx.creditar(1000);
+//		cx.debitar(400);
+//		System.out.println(cx.getSaldo());
 		
 		
 	}
