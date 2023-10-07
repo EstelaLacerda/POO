@@ -26,6 +26,26 @@ public class Vendedor {
 		this.dataNascimento = dataNascimento;
 		this.renda = renda;
 		this.endereco = endereco;
+		CaixaDeBonus cx = new CaixaDeBonus(createCaixaCodigo());
+	}
+	//Methods
+	
+	public int calcularIdade() {
+		
+		LocalDate dataAtual = LocalDate.now();
+		Period idadeCompleta = Period.between(dataNascimento, dataAtual);
+		int idade = idadeCompleta.getYears();
+		
+		return idade;
+	}
+	
+	private long createCaixaCodigo() {
+ 
+		String primeirosNoveCPF = cpf.substring(0,8);
+		LocalDate dataAtual = LocalDate.now();
+		long codigo = Long.parseLong(primeirosNoveCPF+dataAtual.getYear()+dataAtual.getMonth()+dataAtual.getDayOfMonth());
+		
+		return codigo;
 	}
 
 	// Getters & Setters
@@ -73,24 +93,15 @@ public class Vendedor {
 		return cpf;
 	}
 	
-	//Methods
-	
-	public int calcularIdade() {
-		
-		LocalDate dataAtual = LocalDate.now();
-		Period idadeCompleta = Period.between(dataNascimento, dataAtual);
-		int idade = idadeCompleta.getYears();
-		
-		return idade;
-	}
+
 
 //	TODO:
 //		OK Atributos: devem ser privados
 //		OK Construtor: deve inicializar todos os atributos.
-//		TODO Métodos:
+//		OK Métodos:
 //			OK Set´s públicos para todos os atributos, exceto CPF
 //			OK Get´s públicos para todos os atributos
-//			TODO Método int calcularIdade(), que calcula e retorna a idade do vendedor em função da data atual (obtê-la do JAVA) e da data de nascimento (que é atributo de vendedor).
+//			OK Método int calcularIdade(), que calcula e retorna a idade do vendedor em função da data atual (obtê-la do JAVA) e da data de nascimento (que é atributo de vendedor).
 		
 }
 
