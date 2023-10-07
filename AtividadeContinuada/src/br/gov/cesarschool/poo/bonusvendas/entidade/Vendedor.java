@@ -30,23 +30,11 @@ public class Vendedor implements Serializable{
 		this.renda = renda;
 		this.endereco = endereco;
 		
-		
+		new CaixaDeBonus(createCaixaCodigo());
 		new VendedorDAO().incluir(this);
-
-		
-		
-//		criacao de caixabonus
-//		CaixaDeBonus cx = new CaixaDeBonus(createCaixaCodigo());
-//		System.out.println(cx.getNumero());
-//		
-//		cx.creditar(1000);
-//		cx.debitar(400);
-//		System.out.println(cx.getSaldo());
-		
-		
 	}
-	//Methods
 	
+	//Methods
 	public int calcularIdade() {
 		
 		LocalDate dataAtual = LocalDate.now();
@@ -58,9 +46,10 @@ public class Vendedor implements Serializable{
 	
 	private long createCaixaCodigo() {
  
-		String primeirosNoveCPF = cpf.substring(0,9);
 		LocalDate dataAtual = LocalDate.now();
-		long codigo = Long.parseLong(primeirosNoveCPF+dataAtual.getYear()+dataAtual.getMonthValue()+dataAtual.getDayOfMonth());
+		long codigo = Long.parseLong(cpf.substring(0,9) + dataAtual.getYear()
+														+ dataAtual.getMonthValue()
+														+ dataAtual.getDayOfMonth());
 		
 		return codigo;
 	}
@@ -109,8 +98,7 @@ public class Vendedor implements Serializable{
 	public String getCpf() {
 		return cpf;
 	}
-	
-
+}
 
 //	TODO:
 //		OK Atributos: devem ser privados
@@ -120,7 +108,7 @@ public class Vendedor implements Serializable{
 //			OK Get´s públicos para todos os atributos
 //			OK Método int calcularIdade(), que calcula e retorna a idade do vendedor em função da data atual (obtê-la do JAVA) e da data de nascimento (que é atributo de vendedor).
 		
-}
+
 
 
 

@@ -23,8 +23,9 @@ public enum TipoResgate  {
 	public String getDescricao() {
 		return descricao;
 	}
-	
+}
+
+
 	// TODO Não foi pedido, mas é possível incluir um método obterPorCodigo() caso seja necessário.
 	
 	
-}

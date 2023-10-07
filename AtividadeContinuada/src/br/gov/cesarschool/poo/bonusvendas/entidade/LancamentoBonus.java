@@ -2,6 +2,9 @@ package br.gov.cesarschool.poo.bonusvendas.entidade;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import br.gov.cesarschool.poo.bonusvendas.dao.LancamentoBonusDAO;
 
 public class LancamentoBonus implements Serializable{
 	
@@ -16,6 +19,14 @@ public class LancamentoBonus implements Serializable{
 		this.numeroCaixaDeBonus = numeroCaixaDeBonus;
 		this.valor = valor;
 		this.dataHoraLancamento = dataHoraLancamento;
+		
+		new LancamentoBonusDAO().incluir(this);
+	}
+	//Methods
+	public String getIdDAO () {
+		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+        String dataFormatada = dataHoraLancamento.format(formatador);
+        return numeroCaixaDeBonus + dataFormatada;
 	}
 	
 	//Getters
@@ -29,11 +40,11 @@ public class LancamentoBonus implements Serializable{
 
 	public LocalDateTime getDataHoraLancamento() {
 		return dataHoraLancamento;
-	}
-
-//	TODO:
-//		OK Atributos: devem ser privados
-//		OK Construtor: deve inicializar todos os atributos.
-//		OK gets públicos para todos os atributos.
+	}	
 
 }
+
+//TODO:
+//OK Atributos: devem ser privados
+//OK Construtor: deve inicializar todos os atributos.
+//OK gets públicos para todos os atributos.
