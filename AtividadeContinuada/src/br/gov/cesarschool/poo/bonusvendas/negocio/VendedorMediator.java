@@ -1,9 +1,20 @@
 package br.gov.cesarschool.poo.bonusvendas.negocio;
 
-public class VendedorMediator {
+import br.gov.cesarschool.poo.bonusvendas.dao.VendedorDAO;
 
-	public VendedorMediator() {
-		// TODO Auto-generated constructor stub
-	}
+public class VendedorMediator {
+	
+	//Attributes
+	private VendedorDAO repositorioVendedor;
+    private AcumuloResgateMediator caixaDeBonusMediator;
+    
+    //Constructor
+    public VendedorMediator() {
+        this.repositorioVendedor = new VendedorDAO();
+        this.caixaDeBonusMediator = new AcumuloResgateMediator();
+    }
+    
+    //Methods
+    
 
 }
