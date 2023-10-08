@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import br.gov.cesarschool.poo.bonusvendas.dao.LancamentoBonusDAO;
-
 public class LancamentoBonus implements Serializable{
 	
 	//Attributes
@@ -20,7 +18,6 @@ public class LancamentoBonus implements Serializable{
 		this.valor = valor;
 		this.dataHoraLancamento = dataHoraLancamento;
 		
-		new LancamentoBonusDAO().incluir(this);
 	}
 	//Methods
 	public String getIdDAO () {

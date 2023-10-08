@@ -1,9 +1,7 @@
 package br.gov.cesarschool.poo.bonusvendas.entidade;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import br.gov.cesarschool.poo.bonusvendas.dao.CaixaDeBonusDAO;
 
 public class CaixaDeBonus implements Serializable {
 
