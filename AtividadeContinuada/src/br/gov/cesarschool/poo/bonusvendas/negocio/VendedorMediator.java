@@ -20,7 +20,7 @@ public class VendedorMediator {
     //Constructor
     public VendedorMediator() {
         this.repositorioVendedor = new VendedorDAO();
-        this.caixaDeBonusMediator = new AcumuloResgateMediator();
+        this.caixaDeBonusMediator = AcumuloResgateMediator.getInstance();
     }
     
     		//Singleton
