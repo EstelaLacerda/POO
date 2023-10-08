@@ -28,8 +28,7 @@ public class CaixaDeBonusDAO {
 			return true;
 		}		
 	}
-	public CaixaDeBonus buscar(long numero) {
-		// Esta operação entre () vai ter significado mais à frente! 
+	public CaixaDeBonus buscar(long numero) { 
 		return (CaixaDeBonus)cadastro.buscar(BRANCO + numero);
 	}
 	
@@ -37,7 +36,6 @@ public class CaixaDeBonusDAO {
 		Serializable[] rets = cadastro.buscarTodos(CaixaDeBonus.class);
 		CaixaDeBonus[] caixas = new CaixaDeBonus[rets.length];
 		for(int i=0; i<rets.length; i++) {
-			// Esta operação entre () vai ter significado mais à frente! 
 			caixas[i] = (CaixaDeBonus)rets[i];
 		}
 		return caixas;

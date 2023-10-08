@@ -24,6 +24,5 @@ public enum Sexo {
 		return descricao;
 	}
 }
-	
-	// TODO Não foi pedido, mas é possível incluir um método obterPorCodigo() caso seja necessário.
+
 

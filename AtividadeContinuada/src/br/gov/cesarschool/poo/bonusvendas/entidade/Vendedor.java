@@ -3,11 +3,8 @@ package br.gov.cesarschool.poo.bonusvendas.entidade;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
-
 import br.gov.cesarschool.poo.bonusvendas.entidade.geral.Endereco;
 import br.gov.cesarschool.poo.bonusvendas.entidade.geral.Sexo;
-
-import br.gov.cesarschool.poo.bonusvendas.dao.VendedorDAO;
 
 public class Vendedor implements Serializable{
 	
@@ -29,9 +26,6 @@ public class Vendedor implements Serializable{
 		this.dataNascimento = dataNascimento;
 		this.renda = renda;
 		this.endereco = endereco;
-		
-		new CaixaDeBonus(createCaixaCodigo());
-		new VendedorDAO().incluir(this);
 	}
 	
 	//Methods
@@ -43,17 +37,8 @@ public class Vendedor implements Serializable{
 		
 		return idade;
 	}
-	
-	private long createCaixaCodigo() {
- 
-		LocalDate dataAtual = LocalDate.now();
-		long codigo = Long.parseLong(cpf.substring(0,9) + dataAtual.getYear()
-														+ dataAtual.getMonthValue()
-														+ dataAtual.getDayOfMonth());
-		
-		return codigo;
-	}
 
+	
 	// Getters & Setters
 	public String getNomeCompleto() {
 		return nomeCompleto;
@@ -99,41 +84,3 @@ public class Vendedor implements Serializable{
 		return cpf;
 	}
 }
-
-//	TODO:
-//		OK Atributos: devem ser privados
-//		OK Construtor: deve inicializar todos os atributos.
-//		OK Métodos:
-//			OK Set´s públicos para todos os atributos, exceto CPF
-//			OK Get´s públicos para todos os atributos
-//			OK Método int calcularIdade(), que calcula e retorna a idade do vendedor em função da data atual (obtê-la do JAVA) e da data de nascimento (que é atributo de vendedor).
-		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

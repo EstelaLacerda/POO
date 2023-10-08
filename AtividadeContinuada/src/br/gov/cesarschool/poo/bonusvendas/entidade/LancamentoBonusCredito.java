@@ -8,9 +8,3 @@ public class LancamentoBonusCredito extends LancamentoBonus {
 		super(numeroCaixaDeBonus, valor, dataHoraLancamento);
 	}
 }
-	
-//	TODO:
-//		OK Atributos: apenas os herdados.
-//		OK Construtor: deve inicializar todos os atributos.
-//		OK Métodos: apenas os herdados.
-

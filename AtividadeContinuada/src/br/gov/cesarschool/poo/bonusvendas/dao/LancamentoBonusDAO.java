@@ -29,7 +29,6 @@ public class LancamentoBonusDAO {
 		}		
 	}
 	public LancamentoBonus buscar(String id) {
-		// Esta operação entre () vai ter significado mais à frente! 
 		return (LancamentoBonus)cadastro.buscar(id);
 	}
 	
@@ -37,7 +36,6 @@ public class LancamentoBonusDAO {
 		Serializable[] rets = cadastro.buscarTodos(LancamentoBonus.class);
 		LancamentoBonus[] lancs = new LancamentoBonus[rets.length];
 		for(int i=0; i<rets.length; i++) {
-			// Esta operação entre () vai ter significado mais à frente! 
 			lancs[i] = (LancamentoBonus)rets[i];
 		}
 		return lancs;

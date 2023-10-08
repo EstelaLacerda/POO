@@ -30,7 +30,6 @@ public class VendedorDAO {
 		}		
 	}
 	public Vendedor buscar(String cpf) {
-		// Esta operação entre () vai ter significado mais à frente! 
 		return (Vendedor)cadastro.buscar(cpf);
 	}
 	
@@ -38,7 +37,6 @@ public class VendedorDAO {
 		Serializable[] rets = cadastro.buscarTodos(Vendedor.class);
 		Vendedor[] vends = new Vendedor[rets.length];
 		for(int i=0; i<rets.length; i++) {
-			// Esta operação entre () vai ter significado mais à frente! 
 			vends[i] = (Vendedor)rets[i];
 		}
 		return vends;

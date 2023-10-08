@@ -72,9 +72,4 @@ public class Endereco implements Serializable{
 	
 }	
 
-//	TODO:
-//	 	OK Atributos: devem ser privados
-//	 	OK Construtor: deve inicializar todos os atributos da classe.
-//	 	OK Métodos: sets e gets públicos para todos os atributos.
-	
 

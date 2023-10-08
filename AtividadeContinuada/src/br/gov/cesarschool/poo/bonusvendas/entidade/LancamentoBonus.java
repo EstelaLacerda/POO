@@ -43,8 +43,3 @@ public class LancamentoBonus implements Serializable{
 	}	
 
 }
-
-//TODO:
-//OK Atributos: devem ser privados
-//OK Construtor: deve inicializar todos os atributos.
-//OK gets públicos para todos os atributos.
