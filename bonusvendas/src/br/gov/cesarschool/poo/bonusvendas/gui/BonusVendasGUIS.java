@@ -3,7 +3,7 @@ package br.gov.cesarschool.poo.bonusvendas.gui;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
-public class BonusVendasGUI {
+public class BonusVendasGUIS {
 
 	protected Shell shell;
 
@@ -13,7 +13,7 @@ public class BonusVendasGUI {
 	 */
 	public static void main(String[] args) {
 		try {
-			BonusVendasGUI window = new BonusVendasGUI();
+			BonusVendasGUIS window = new BonusVendasGUIS();
 			window.open();
 		} catch (Exception e) {
 			e.printStackTrace();
