@@ -30,7 +30,7 @@ public class Main {
 		
 		VendedorDAO viaDao = new VendedorDAO();
 		
-		Vendedor vv = viaDao.buscar("12345678911");
+		Vendedor vv = viaDao.buscar("12345678914");
 		System.out.println(vv.getNomeCompleto());
 		//ciracao de caixa de bonus
 		
