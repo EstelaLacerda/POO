@@ -1,9 +1,9 @@
-package br.gov.cesarschool.poo.bonusvendas.gui;
+package br.gov.cesarschool.poo.bonusvendas.tela;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
-public class BonusVendasGUIS {
+public class TelaManutencaoVendedor {
 
 	protected Shell shell;
 
@@ -13,7 +13,7 @@ public class BonusVendasGUIS {
 	 */
 	public static void main(String[] args) {
 		try {
-			BonusVendasGUIS window = new BonusVendasGUIS();
+			TelaManutencaoVendedor window = new TelaManutencaoVendedor();
 			window.open();
 		} catch (Exception e) {
 			e.printStackTrace();
