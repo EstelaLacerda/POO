@@ -26,3 +26,5 @@ replay_pid*
 # others
 .project
 .metadata
+.classpath
+/bin/
