@@ -51,7 +51,7 @@ public class TelaAcumuloResgate {
 	 */
 	protected void createContents() {
 		shell = new Shell();
-		shell.setSize(459, 720);
+		shell.setSize(803, 449);
 		shell.setBackground(SWTResourceManager.getColor(80, 80, 80));
 		shell.setText("Bonus Vendas");
 		
@@ -61,10 +61,10 @@ public class TelaAcumuloResgate {
 		textNrCaixaDeBonus.setBounds(39, 101, 158, 31);
 		
 		textSaldoAtual = new Text(shell, SWT.BORDER);
-		textSaldoAtual.setBounds(147, 329, 158, 31);
+		textSaldoAtual.setBounds(469, 64, 158, 31);
 		
 		textValor = new Text(shell, SWT.BORDER);
-		textValor.setBounds(36, 419, 80, 31);
+		textValor.setBounds(358, 154, 80, 31);
 		
 		
 		// BUTTONS
@@ -100,11 +100,11 @@ public class TelaAcumuloResgate {
 
 		
 		Combo comboTipoDeResgate = new Combo(shell, SWT.NONE);
-		comboTipoDeResgate.setBounds(36, 500, 104, 33);
+		comboTipoDeResgate.setBounds(358, 235, 104, 33);
 		
 		
 		Button btnConfirmar = new Button(shell, SWT.NONE);
-		btnConfirmar.setBounds(275, 590, 126, 35);
+		btnConfirmar.setBounds(608, 325, 126, 35);
 		btnConfirmar.setText("AcumularResgatar");
 		
 		
@@ -114,7 +114,7 @@ public class TelaAcumuloResgate {
 			public void widgetSelected(SelectionEvent e) {
 			}
 		});
-		btnCancelar.setBounds(148, 590, 105, 35);
+		btnCancelar.setBounds(482, 325, 105, 35);
 		btnCancelar.setText("Voltar");
 		
 		
@@ -122,13 +122,13 @@ public class TelaAcumuloResgate {
 		//DESIGN
 		
 		Label lblValor = new Label(shell, SWT.NONE);
-		lblValor.setBounds(36, 391, 81, 25);
+		lblValor.setBounds(358, 126, 81, 25);
 		lblValor.setForeground(SWTResourceManager.getColor(214, 214, 214));
 		lblValor.setBackground(SWTResourceManager.getColor(80, 80, 80));
 		lblValor.setText("Valor");
 		
 		Label lblSaldoAtual = new Label(shell, SWT.NONE);
-		lblSaldoAtual.setBounds(36, 332, 105, 25);
+		lblSaldoAtual.setBounds(358, 67, 105, 25);
 		lblSaldoAtual.setForeground(SWTResourceManager.getColor(214, 214, 214));
 		lblSaldoAtual.setBackground(SWTResourceManager.getColor(80, 80, 80));
 		lblSaldoAtual.setText("Saldo Atual");
@@ -140,7 +140,7 @@ public class TelaAcumuloResgate {
 		lblOperacao.setText("Operação");
 		
 		Label lblTipoDeResgate = new Label(shell, SWT.NONE);
-		lblTipoDeResgate.setBounds(36, 469, 134, 25);
+		lblTipoDeResgate.setBounds(358, 204, 134, 25);
 		lblTipoDeResgate.setForeground(SWTResourceManager.getColor(214, 214, 214));
 		lblTipoDeResgate.setBackground(SWTResourceManager.getColor(80, 80, 80));
 		lblTipoDeResgate.setText("Tipo de resgate");
@@ -156,8 +156,11 @@ public class TelaAcumuloResgate {
 		lblBonus.setBackground(SWTResourceManager.getColor(80, 80, 80));
 		lblBonus.setAlignment(SWT.CENTER);
 		lblBonus.setFont(SWTResourceManager.getFont("Bahnschrift", 20, SWT.BOLD));
-		lblBonus.setBounds(275, 10, 175, 48);
+		lblBonus.setBounds(624, 10, 175, 48);
 		lblBonus.setText("Bonus");
+		
+		Label label = new Label(shell, SWT.SEPARATOR | SWT.VERTICAL);
+		label.setBounds(298, 59, 2, 245);
 
 	}
 }

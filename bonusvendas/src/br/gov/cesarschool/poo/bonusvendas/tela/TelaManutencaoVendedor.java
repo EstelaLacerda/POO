@@ -85,7 +85,7 @@ public class TelaManutencaoVendedor {
 	 */
 	protected void createContents() {
 		shlBonusVendas = new Shell();
-		shlBonusVendas.setSize(new Point(713, 958));
+		shlBonusVendas.setSize(new Point(1189, 618));
 		shlBonusVendas.setBackground(SWTResourceManager.getColor(80, 80, 80));
 		shlBonusVendas.setText("Bonus Vendas");
 		
@@ -199,15 +199,15 @@ public class TelaManutencaoVendedor {
 		
 		textEndereco = new Text(shlBonusVendas, SWT.BORDER);
 		textEndereco.setEnabled(false);
-		textEndereco.setBounds(68, 513, 381, 31);
+		textEndereco.setBounds(605, 237, 381, 31);
 		
 		textComplemento = new Text(shlBonusVendas, SWT.BORDER);
 		textComplemento.setEnabled(false);
-		textComplemento.setBounds(68, 592, 381, 31);
+		textComplemento.setBounds(605, 316, 381, 31);
 		
 		textNumero = new Text(shlBonusVendas, SWT.BORDER);
 		textNumero.setEnabled(false);
-		textNumero.setBounds(474, 513, 83, 31);
+		textNumero.setBounds(1011, 237, 83, 31);
 		
 		ModifyListener[] numeroListenerContainer = new ModifyListener[1];
 
@@ -225,7 +225,7 @@ public class TelaManutencaoVendedor {
 		
 		textCep = new Text(shlBonusVendas, SWT.BORDER);
 		textCep.setEnabled(false);
-		textCep.setBounds(475, 592, 120, 31);
+		textCep.setBounds(1012, 316, 120, 31);
 		
 		ModifyListener[] cepListenerContainer = new ModifyListener[1];
 
@@ -253,11 +253,11 @@ public class TelaManutencaoVendedor {
 		
 		textCidade = new Text(shlBonusVendas, SWT.BORDER);
 		textCidade.setEnabled(false);
-		textCidade.setBounds(68, 680, 221, 31);
+		textCidade.setBounds(605, 404, 221, 31);
 		
 		comboEstado = new Combo(shlBonusVendas, SWT.READ_ONLY);
 		comboEstado.setEnabled(false);
-		comboEstado.setBounds(324, 678, 70, 33);
+		comboEstado.setBounds(861, 402, 70, 33);
 		String[] estadosBrasileiros = {
 			    "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA",
 			    "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN",
@@ -410,14 +410,14 @@ public class TelaManutencaoVendedor {
 			    }
 			});
 		btnConfirmar.setForeground(SWTResourceManager.getColor(0, 153, 0));
-		btnConfirmar.setBounds(539, 789, 105, 35);
+		btnConfirmar.setBounds(1031, 498, 105, 35);
 		btnConfirmar.setText("Confirmar");
 
 		Button btnCancelar = new Button(shlBonusVendas, SWT.NONE);
 		btnCancelar.setEnabled(false);
 		btnCancelar.setText("Cancelar");
 		btnCancelar.setForeground(SWTResourceManager.getColor(208, 0, 0));
-		btnCancelar.setBounds(416, 789, 105, 35);
+		btnCancelar.setBounds(908, 498, 105, 35);
 		btnCancelar.addSelectionListener(new SelectionAdapter() {
 		    @Override
 		    public void widgetSelected(SelectionEvent e) {
@@ -578,37 +578,37 @@ public class TelaManutencaoVendedor {
 		lblEndereco.setForeground(SWTResourceManager.getColor(214, 214, 214));
 		lblEndereco.setBackground(SWTResourceManager.getColor(80, 80, 80));
 		lblEndereco.setText("Endereço");
-		lblEndereco.setBounds(68, 482, 81, 25);
+		lblEndereco.setBounds(605, 206, 81, 25);
 		
 		lblComplemento = new Label(shlBonusVendas, SWT.NONE);
 		lblComplemento.setForeground(SWTResourceManager.getColor(214, 214, 214));
 		lblComplemento.setBackground(SWTResourceManager.getColor(80, 80, 80));
 		lblComplemento.setText("Complemento");
-		lblComplemento.setBounds(68, 561, 126, 25);
+		lblComplemento.setBounds(605, 285, 126, 25);
 		
 		lblNumero = new Label(shlBonusVendas, SWT.NONE);
 		lblNumero.setText("Número");
 		lblNumero.setForeground(SWTResourceManager.getColor(214, 214, 214));
 		lblNumero.setBackground(SWTResourceManager.getColor(80, 80, 80));
-		lblNumero.setBounds(474, 482, 81, 25);
+		lblNumero.setBounds(1011, 206, 81, 25);
 
 		lblCep = new Label(shlBonusVendas, SWT.NONE);
 		lblCep.setText("CEP");
 		lblCep.setForeground(SWTResourceManager.getColor(214, 214, 214));
 		lblCep.setBackground(SWTResourceManager.getColor(80, 80, 80));
-		lblCep.setBounds(475, 561, 81, 25);
+		lblCep.setBounds(1012, 285, 81, 25);
 		
 		lblCidade = new Label(shlBonusVendas, SWT.NONE);
 		lblCidade.setText("Cidade");
 		lblCidade.setForeground(SWTResourceManager.getColor(214, 214, 214));
 		lblCidade.setBackground(SWTResourceManager.getColor(80, 80, 80));
-		lblCidade.setBounds(68, 649, 81, 25);
+		lblCidade.setBounds(605, 373, 81, 25);
 		
 		lblEstado = new Label(shlBonusVendas, SWT.NONE);
 		lblEstado.setText("Estado\r\n");
 		lblEstado.setForeground(SWTResourceManager.getColor(214, 214, 214));
 		lblEstado.setBackground(SWTResourceManager.getColor(80, 80, 80));
-		lblEstado.setBounds(324, 649, 81, 25);
+		lblEstado.setBounds(861, 373, 81, 25);
 		
 		Label horizLine = new Label(shlBonusVendas, SWT.SEPARATOR | SWT.HORIZONTAL);
 		horizLine.setForeground(SWTResourceManager.getColor(99, 99, 99));
@@ -621,7 +621,7 @@ public class TelaManutencaoVendedor {
 		logoVendedor.setBackground(SWTResourceManager.getColor(80, 80, 80));
 		logoVendedor.setAlignment(SWT.CENTER);
 		logoVendedor.setFont(SWTResourceManager.getFont("Bahnschrift", 20, SWT.BOLD));
-		logoVendedor.setBounds(439, 10, 281, 49);
+		logoVendedor.setBounds(912, 10, 281, 49);
 		logoVendedor.setText("Vendedor");
 		
 	}
