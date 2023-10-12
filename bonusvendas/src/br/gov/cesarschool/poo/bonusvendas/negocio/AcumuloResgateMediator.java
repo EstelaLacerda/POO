@@ -37,17 +37,23 @@ public class AcumuloResgateMediator {
 	
 	//Methods
 	public long gerarCaixaDeBonus(Vendedor vendedor) {
+		if (vendedor == null) {
+            return 0;
+        }
 		//format
-		String cpf = vendedor.getCpf().substring(0,9);
 		LocalDate dataAtual = LocalDate.now();
-		long codigo = Long.parseLong(cpf + dataAtual.getYear()
-										 + dataAtual.getMonthValue()
-									     + dataAtual.getDayOfMonth());
+        int ano = dataAtual.getYear();
+        int mes = dataAtual.getMonthValue();
+        int dia = dataAtual.getDayOfMonth();
+        String codigo = vendedor.getCpf().substring(0,9) + String.format("%04d%02d%02d", ano, mes, dia);
+        long numCaixa = Long.parseLong(codigo);
+        
 		//create
-		CaixaDeBonus caixa = new CaixaDeBonus(codigo);
+		CaixaDeBonus caixa = new CaixaDeBonus(numCaixa);
 	    boolean incluido = repositorioCaixaDeBonus.incluir(caixa);
+	    System.out.println(incluido);
 	    if (incluido) {
-	        return codigo;
+	        return numCaixa;
 	    } else {
 	        return 0;
 	    }

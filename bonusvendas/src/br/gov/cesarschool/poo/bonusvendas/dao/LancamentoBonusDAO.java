@@ -34,10 +34,10 @@ public class LancamentoBonusDAO {
 	
 	public LancamentoBonus[] buscarTodos() {
 		Serializable[] rets = cadastro.buscarTodos(LancamentoBonus.class);
-		LancamentoBonus[] lancs = new LancamentoBonus[rets.length];
+		LancamentoBonus[] prods = new LancamentoBonus[rets.length];
 		for(int i=0; i<rets.length; i++) {
-			lancs[i] = (LancamentoBonus)rets[i];
+			prods[i] = (LancamentoBonus)rets[i];
 		}
-		return lancs;
+		return prods;
 	} 
 }
