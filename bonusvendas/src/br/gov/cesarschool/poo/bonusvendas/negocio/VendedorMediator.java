@@ -35,21 +35,21 @@ public class VendedorMediator {
     public ResultadoInclusaoVendedor incluir(Vendedor vendedor) {
     	//
         String resultadoValidacao = validar(vendedor);
-        System.out.println(resultadoValidacao);
+     //   System.out.println(resultadoValidacao);
         if (resultadoValidacao!=null) {
             return new ResultadoInclusaoVendedor(0, resultadoValidacao);
         }
         //
+        if (!repositorioVendedor.incluir(vendedor)) {
+            return new ResultadoInclusaoVendedor(0, "Vendedor ja existente");
+        }
+        //
         long retornoCaixaDeBonus = caixaDeBonusMediator.gerarCaixaDeBonus(vendedor);
-        System.out.println(retornoCaixaDeBonus);
+     //   System.out.println(retornoCaixaDeBonus);
         if (retornoCaixaDeBonus==0) {
             return new ResultadoInclusaoVendedor(0, "Caixa de bonus nao foi gerada");
         }
         
-        //
-        if (!repositorioVendedor.incluir(vendedor)) {
-            return new ResultadoInclusaoVendedor(0, "Vendedor ja existente");
-        }
         //
         return new ResultadoInclusaoVendedor(retornoCaixaDeBonus, null);
     }
@@ -68,6 +68,10 @@ public class VendedorMediator {
             return "Vendedor inexistente";
         }
         return null;
+    }
+    
+    public Vendedor buscar(String cpf) {
+    	return repositorioVendedor.buscar(cpf);
     }
     
     private String validar(Vendedor vendedor) {

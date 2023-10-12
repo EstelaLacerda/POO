@@ -30,7 +30,7 @@ public class Main {
 			
 			
 		System.out.println(vendedor.calcularIdade());
-		
+		//System.out.println(vendedor.dtN)
 		VendedorMediator mediator = VendedorMediator.getInstance();
 		mediator.incluir(vendedor);
 		

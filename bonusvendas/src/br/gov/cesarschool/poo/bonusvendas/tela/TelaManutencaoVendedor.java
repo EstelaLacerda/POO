@@ -5,6 +5,8 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Text;
@@ -29,7 +31,7 @@ import org.eclipse.swt.widgets.Control;
 
 public class TelaManutencaoVendedor {
 	
-
+	private boolean alterar = false;
 	protected Shell shlBonusVendas;
 	private Label lblNomeCompleto;
 	private Text textNomeCompleto;
@@ -121,7 +123,7 @@ public class TelaManutencaoVendedor {
 
 	        textCpf.removeModifyListener(cpfListenerContainer[0]);
 	        textCpf.setText(formattedCpf.toString());
-	        textCpf.setSelection(formattedCpf.length());  // move the caret to the end
+	        textCpf.setSelection(formattedCpf.length());
 	        textCpf.addModifyListener(cpfListenerContainer[0]);
 	    };
 
@@ -132,14 +134,70 @@ public class TelaManutencaoVendedor {
 		textNomeCompleto = new Text(shlBonusVendas, SWT.BORDER);
 		textNomeCompleto.setEnabled(false);
 		textNomeCompleto.setBounds(68, 237, 460, 31);
-		
+
 		textDataDeNascimento = new Text(shlBonusVendas, SWT.BORDER);
 		textDataDeNascimento.setEnabled(false);
 		textDataDeNascimento.setBounds(68, 321, 214, 31);
 		
+		ModifyListener[] dateListenerContainer = new ModifyListener[1];
+
+		dateListenerContainer[0] = e -> {
+		    String date = textDataDeNascimento.getText();
+		    date = date.replaceAll("[^0-9]", "");
+		    
+		    if (date.length() > 8) {
+		        date = date.substring(0, 8);
+		    }
+		    
+		    StringBuilder formattedDate = new StringBuilder(date);
+
+		    if (formattedDate.length() > 2) {
+		        formattedDate.insert(2, '/');
+		    }
+		    if (formattedDate.length() > 5) {
+		        formattedDate.insert(5, '/');
+		    }
+
+		    textDataDeNascimento.removeModifyListener(dateListenerContainer[0]);
+		    textDataDeNascimento.setText(formattedDate.toString());
+		    textDataDeNascimento.setSelection(formattedDate.length());
+		    textDataDeNascimento.addModifyListener(dateListenerContainer[0]);
+		};
+
+		textDataDeNascimento.addModifyListener(dateListenerContainer[0]);
+		
+		
 		textRenda = new Text(shlBonusVendas, SWT.BORDER);
 		textRenda.setEnabled(false);
 		textRenda.setBounds(68, 411, 214, 31);
+		
+		ModifyListener[] rendaListenerContainer = new ModifyListener[1];
+
+		rendaListenerContainer[0] = e -> {
+		    String renda = textRenda.getText();
+		    renda = renda.replaceAll("[^0-9]", "");
+		    
+		    StringBuilder formattedRenda = new StringBuilder(renda);
+		    
+		    while (formattedRenda.length() < 3) {
+		        formattedRenda.insert(0, '0');
+		    }
+
+		    formattedRenda.insert(formattedRenda.length() - 2, '.');
+		    
+		    if (formattedRenda.length() - formattedRenda.indexOf(".") > 3) {
+		        formattedRenda = new StringBuilder(formattedRenda.substring(0, formattedRenda.indexOf(".") + 3));
+		    }
+
+		    textRenda.removeModifyListener(rendaListenerContainer[0]);
+		    textRenda.setText(formattedRenda.toString());
+		    textRenda.setSelection(formattedRenda.length());
+		    textRenda.addModifyListener(rendaListenerContainer[0]);
+		};
+
+		textRenda.addModifyListener(rendaListenerContainer[0]);
+
+		
 		
 		textEndereco = new Text(shlBonusVendas, SWT.BORDER);
 		textEndereco.setEnabled(false);
@@ -153,17 +211,63 @@ public class TelaManutencaoVendedor {
 		textNumero.setEnabled(false);
 		textNumero.setBounds(474, 513, 83, 31);
 		
+		ModifyListener[] numeroListenerContainer = new ModifyListener[1];
+
+		numeroListenerContainer[0] = e -> {
+		    String numero = textNumero.getText();
+		    numero = numero.replaceAll("[^0-9]", "");
+
+		    textNumero.removeModifyListener(numeroListenerContainer[0]);
+		    textNumero.setText(numero);
+		    textNumero.setSelection(numero.length());
+		    textNumero.addModifyListener(numeroListenerContainer[0]);
+		};
+
+		textNumero.addModifyListener(numeroListenerContainer[0]);
+		
 		textCep = new Text(shlBonusVendas, SWT.BORDER);
 		textCep.setEnabled(false);
 		textCep.setBounds(475, 592, 120, 31);
+		
+		ModifyListener[] cepListenerContainer = new ModifyListener[1];
+
+		cepListenerContainer[0] = e -> {
+		    String cep = textCep.getText();
+		    cep = cep.replaceAll("[^0-9]", "");
+		    
+		    if (cep.length() > 8) {
+		        cep = cep.substring(0, 8);
+		    }
+		    
+		    StringBuilder formattedCep = new StringBuilder(cep);
+
+		    if (formattedCep.length() > 5) {
+		        formattedCep.insert(5, '-');
+		    }
+
+		    textCep.removeModifyListener(cepListenerContainer[0]);
+		    textCep.setText(formattedCep.toString());
+		    textCep.setSelection(formattedCep.length());
+		    textCep.addModifyListener(cepListenerContainer[0]);
+		};
+
+		textCep.addModifyListener(cepListenerContainer[0]);
 		
 		textCidade = new Text(shlBonusVendas, SWT.BORDER);
 		textCidade.setEnabled(false);
 		textCidade.setBounds(68, 680, 221, 31);
 		
-		comboEstado = new Combo(shlBonusVendas, SWT.NONE);
+		comboEstado = new Combo(shlBonusVendas, SWT.READ_ONLY);
 		comboEstado.setEnabled(false);
 		comboEstado.setBounds(324, 678, 70, 33);
+		String[] estadosBrasileiros = {
+			    "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA",
+			    "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN",
+			    "RO", "RS", "RR", "SC", "SE", "SP", "TO"
+			};
+			for (String estado : estadosBrasileiros) {
+			    comboEstado.add(estado);
+			}
 		
 		
 		Button btnFeminino = new Button(shlBonusVendas, SWT.RADIO);
@@ -189,33 +293,118 @@ public class TelaManutencaoVendedor {
 		
 		// BUTTON
 		
+		
 	
 		Button btnConfirmar = new Button(shlBonusVendas, SWT.NONE);
 		btnConfirmar.setEnabled(false);
 		btnConfirmar.addSelectionListener(new SelectionAdapter() {
 			 @Override
 			    public void widgetSelected(SelectionEvent e) {
+				 	if(textCpf.getText().isEmpty() || 
+				           textNomeCompleto.getText().isEmpty() ||
+				           textDataDeNascimento.getText().isEmpty() ||
+				           textRenda.getText().isEmpty() ||
+				           textEndereco.getText().isEmpty() ||
+				           textComplemento.getText().isEmpty() ||
+				           textNumero.getText().isEmpty() ||
+				           textCep.getText().isEmpty() ||
+				           textCidade.getText().isEmpty() ||
+				           comboEstado.getSelectionIndex() == -1 ||
+				           (!btnFeminino.getSelection() && !btnMasculino.getSelection())) 
+				           {
+				               
+				           MessageBox dialog = new MessageBox(shlBonusVendas, SWT.ERROR | SWT.OK);
+				           dialog.setText("Erro");
+				           dialog.setMessage("Todos os campos sao obrigatorios");
+				           dialog.open();
+				           return;
+				        }
+				 	String cep = textCep.getText();
+					cep = cep.replaceAll("[^0-9]", "");
+					if (cep.length() != 8) {
+					    MessageBox messageBox = new MessageBox(shlBonusVendas, SWT.ICON_ERROR | SWT.OK);
+					    messageBox.setText("Erro");
+					    messageBox.setMessage("O CEP deve conter 8 numeros");
+					    messageBox.open();
+					    return;
+					}
+				 	String cpf = textCpf.getText().replaceAll("[^0-9]", "");
 			        Sexo selectedSex = btnFeminino.getSelection() ? Sexo.FEMININO : Sexo.MASCULINO;
+			        
+			        
+			        String inputData = textDataDeNascimento.getText();
+			        if (!isValidData(inputData)) {
+			            MessageBox messageBox = new MessageBox(shlBonusVendas, SWT.ICON_ERROR | SWT.OK);
+			            messageBox.setText("Erro");
+			            messageBox.setMessage("Data de Nascimento nao esta no formato correto (dd/MM/yyyy) ou invalida");
+			            messageBox.open();
+			            return;
+			        }
+			        
+			        String[] dateParts = textDataDeNascimento.getText().split("/");
+			        int year = Integer.parseInt(dateParts[2]);
+			        int month = Integer.parseInt(dateParts[1]);
+			        int day = Integer.parseInt(dateParts[0]);
 			        Endereco endereco = new Endereco(
 			        	    textEndereco.getText(),
 			        	    Integer.parseInt(textNumero.getText()),
 			        	    textComplemento.getText(),
-			        	    textCep.getText(),
+			        	    cep,
 			        	    textCidade.getText(),
 			        	    comboEstado.getText(),
 			        	    "Brasil"
 			        	);
 			        Vendedor vendedor = new Vendedor(
-			            textCpf.getText(),
+			            cpf,
 			            textNomeCompleto.getText(),
 			            selectedSex,
-			            LocalDate.of(1987, 11, 21),
+			            LocalDate.of(year, month, day),
 			            Double.parseDouble(textRenda.getText()),
 			            endereco
 			        );
 			        
 			        VendedorMediator mediator = VendedorMediator.getInstance();
-			        ResultadoInclusaoVendedor result = mediator.incluir(vendedor);
+			        
+			        if (alterar) {
+			            String alterarResult = mediator.alterar(vendedor);
+			            if (alterarResult != null) {
+			                MessageBox messageBox = new MessageBox(shlBonusVendas, SWT.ICON_ERROR | SWT.OK);
+			                messageBox.setText("Erro");
+			                messageBox.setMessage(alterarResult);
+			                messageBox.open();
+			            } else {
+			                MessageBox messageBox = new MessageBox(shlBonusVendas, SWT.ICON_INFORMATION | SWT.OK);
+			                messageBox.setText("Sucesso");
+			                messageBox.setMessage("Alteração realizada com sucesso");
+			                messageBox.open();
+				            reset();
+				            btnFeminino.setSelection(false);
+				    	    btnFeminino.setEnabled(false);
+				    	    btnMasculino.setSelection(false);
+				    	    btnMasculino.setEnabled(false);
+				    	    btnConfirmar.setEnabled(false);
+			            }
+			            alterar = false;
+			        } else {
+				        ResultadoInclusaoVendedor result = mediator.incluir(vendedor);
+				        if (result.getMensagemErroValidacao() != null) {
+				            MessageBox messageBox = new MessageBox(shlBonusVendas, SWT.ICON_ERROR | SWT.OK);
+				            messageBox.setText("Erro");
+				            messageBox.setMessage(result.getMensagemErroValidacao());
+				            messageBox.open();
+				        } else {
+				            MessageBox messageBox = new MessageBox(shlBonusVendas, SWT.ICON_INFORMATION | SWT.OK);
+				            messageBox.setText("Sucesso");
+				            messageBox.setMessage("Cadastro realizado com sucesso");
+				            messageBox.open();
+				            reset();
+				            btnFeminino.setSelection(false);
+				    	    btnFeminino.setEnabled(false);
+				    	    btnMasculino.setSelection(false);
+				    	    btnMasculino.setEnabled(false);
+				    	    btnConfirmar.setEnabled(false);
+				        }
+			        }
 			        
 
 			    }
@@ -232,26 +421,8 @@ public class TelaManutencaoVendedor {
 		btnCancelar.addSelectionListener(new SelectionAdapter() {
 		    @Override
 		    public void widgetSelected(SelectionEvent e) {
-		        // Disable all fields except for CPF and reset them to their default values
-		    	textCpf.setText("");
-		        textNomeCompleto.setText("");
-		        textNomeCompleto.setEnabled(false);
-		        textDataDeNascimento.setText("");
-		        textDataDeNascimento.setEnabled(false);
-		        textRenda.setText("");
-		        textRenda.setEnabled(false);
-		        textEndereco.setText("");
-		        textEndereco.setEnabled(false);
-		        textComplemento.setText("");
-		        textComplemento.setEnabled(false);
-		        textNumero.setText("");
-		        textNumero.setEnabled(false);
-		        textCep.setText("");
-		        textCep.setEnabled(false);
-		        textCidade.setText("");
-		        textCidade.setEnabled(false);
-		        comboEstado.deselectAll();
-		        comboEstado.setEnabled(false);
+		    	
+		    	reset();
 		        btnFeminino.setSelection(false);
 		        btnFeminino.setEnabled(false);
 		        btnMasculino.setSelection(false);
@@ -260,9 +431,69 @@ public class TelaManutencaoVendedor {
 		        btnCancelar.setEnabled(false);
 		    }
 		});
+		
 		Button btnBuscar = new Button(shlBonusVendas, SWT.NONE);
 		btnBuscar.setText("Buscar");
 		btnBuscar.setBounds(250, 94, 105, 35);
+		btnBuscar.addSelectionListener(new SelectionAdapter() {
+			@Override
+		    public void widgetSelected(SelectionEvent e) {
+				VendedorMediator mediator = VendedorMediator.getInstance();
+			    Vendedor vendedor = mediator.buscar(textCpf.getText().replaceAll("[^0-9]", ""));
+			    
+			    if (vendedor != null) {
+			    	textCpf.setEnabled(false);
+			    	
+			        textNomeCompleto.setText(vendedor.getNomeCompleto());
+			        textNomeCompleto.setEnabled(true);
+			        
+			        textDataDeNascimento.setText(vendedor.getDataNascimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+			        textDataDeNascimento.setEnabled(true);
+			        
+			        textRenda.setText(String.format("%.2f", vendedor.getRenda()));
+			        textRenda.setEnabled(true);
+			        
+			        Endereco endereco = vendedor.getEndereco();
+			        textEndereco.setText(endereco.getLogradouro());
+			        textEndereco.setEnabled(true);
+			        
+			        textComplemento.setText(endereco.getComplemento());
+			        textComplemento.setEnabled(true);
+			        
+			        textNumero.setText(String.valueOf(endereco.getNumero()));
+			        textNumero.setEnabled(true);
+			        
+			        textCep.setText(endereco.getCep());
+			        textCep.setEnabled(true);
+			        
+			        textCidade.setText(endereco.getCidade());
+			        textCidade.setEnabled(true);
+			       
+			        int index = Arrays.asList(estadosBrasileiros).indexOf(endereco.getEstado());
+			        comboEstado.select(index);
+			        comboEstado.setEnabled(true);
+	        
+			        if (vendedor.getSexo() == Sexo.FEMININO) {
+			            btnFeminino.setSelection(true);
+			        } else {
+			            btnMasculino.setSelection(true);
+			        }
+			        
+			        btnFeminino.setEnabled(true);
+			        btnMasculino.setEnabled(true);
+			        
+			        btnConfirmar.setEnabled(true);
+			        btnCancelar.setEnabled(true);
+			        alterar = true;
+			    } else {
+			        MessageBox dialog = new MessageBox(shlBonusVendas, SWT.ERROR | SWT.OK);
+			        dialog.setText("Erro");
+			        dialog.setMessage("Vendedor nao encontrado!");
+			        dialog.open();
+			    }
+			}
+		});
+		
 		
 		
 		Button btnCadastrar = new Button(shlBonusVendas, SWT.NONE);
@@ -281,6 +512,18 @@ public class TelaManutencaoVendedor {
 			        dialog.open();
 			        return; 
 			    }
+			    
+			    VendedorMediator mediator = VendedorMediator.getInstance();
+		        Vendedor vendedorExistente = mediator.buscar(textCpf.getText().replaceAll("[^0-9]", ""));
+
+		        if (vendedorExistente != null) {
+		            MessageBox dialog = new MessageBox(shlBonusVendas, SWT.ERROR | SWT.OK);
+		            dialog.setText("Erro");
+		            dialog.setMessage("Vendedor já cadastrado!");
+		            dialog.open();
+		            return;
+		        }
+		        textCpf.setEnabled(false);
 				textNomeCompleto.setEnabled(true);
 		        textDataDeNascimento.setEnabled(true);
 		        textRenda.setEnabled(true);
@@ -382,6 +625,50 @@ public class TelaManutencaoVendedor {
 		logoVendedor.setText("Vendedor");
 		
 	}
+	private boolean isValidData(String data) {
+	    if (data == null) return false;
+
+	    if (!data.matches("\\d{2}/\\d{2}/\\d{4}")) return false;
+
+	    String[] dateParts = data.split("/");
+	    int day = Integer.parseInt(dateParts[0]);
+	    int month = Integer.parseInt(dateParts[1]);
+
+	    if (month < 1 || month > 12) return false;
+	    if (day < 1 || day > 31) return false;
+
+	    if (month == 2) {
+	        if (day > 29) return false;
+	    }
+	    else if (month == 4 || month == 6 || month == 9 || month == 11) {
+	        if (day > 30) return false;
+	    }
+
+	    return true;
+	}
 	
+	private void reset() {
+	    textCpf.setText("");
+	    textCpf.setEnabled(true);
+	    textNomeCompleto.setText("");
+	    textNomeCompleto.setEnabled(false);
+	    textDataDeNascimento.setText("");
+	    textDataDeNascimento.setEnabled(false);
+	    textRenda.setText("");
+	    textRenda.setEnabled(false);
+	    textEndereco.setText("");
+	    textEndereco.setEnabled(false);
+	    textComplemento.setText("");
+	    textComplemento.setEnabled(false);
+	    textNumero.setText("");
+	    textNumero.setEnabled(false);
+	    textCep.setText("");
+	    textCep.setEnabled(false);
+	    textCidade.setText("");
+	    textCidade.setEnabled(false);
+	    comboEstado.deselectAll();
+	    comboEstado.setEnabled(false);
+	    
+	}
 }
 	

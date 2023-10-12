@@ -11,9 +11,9 @@ public class CaixaDeBonusDAO {
 	
 	public boolean incluir(CaixaDeBonus caixa) {
 		CaixaDeBonus caixaBusca = buscar(caixa.getNumero());
-		System.out.println(caixaBusca.getNumero());
+//		System.out.println(caixaBusca.getNumero());
 		if (caixaBusca != null) { 
-			System.out.println("Falhou");
+//			System.out.println("Falhou");
 			return false;
 		} else {
 			cadastro.incluir(caixa, BRANCO + caixa.getNumero());
