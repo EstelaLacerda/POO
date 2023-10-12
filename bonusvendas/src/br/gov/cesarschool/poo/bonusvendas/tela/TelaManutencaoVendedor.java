@@ -24,9 +24,6 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.dnd.DragSource;
-import org.eclipse.swt.dnd.DND;
-import org.eclipse.swt.widgets.CoolBar;
 import org.eclipse.swt.widgets.Control;
 
 public class TelaManutencaoVendedor {
@@ -94,7 +91,7 @@ public class TelaManutencaoVendedor {
 		
 		
 		
-		// TEXT-BOX
+		// TEXT-BOXES
 		
 		textCpf = new Text(shlBonusVendas, SWT.BORDER);
 	    textCpf.setBounds(68, 96, 151, 31);
@@ -129,12 +126,13 @@ public class TelaManutencaoVendedor {
 
 	    textCpf.addModifyListener(cpfListenerContainer[0]);
 
-		
+
 
 		textNomeCompleto = new Text(shlBonusVendas, SWT.BORDER);
 		textNomeCompleto.setEnabled(false);
 		textNomeCompleto.setBounds(68, 237, 460, 31);
-
+	
+		
 		textDataDeNascimento = new Text(shlBonusVendas, SWT.BORDER);
 		textDataDeNascimento.setEnabled(false);
 		textDataDeNascimento.setBounds(68, 321, 214, 31);
@@ -312,7 +310,6 @@ public class TelaManutencaoVendedor {
 				           comboEstado.getSelectionIndex() == -1 ||
 				           (!btnFeminino.getSelection() && !btnMasculino.getSelection())) 
 				           {
-				               
 				           MessageBox dialog = new MessageBox(shlBonusVendas, SWT.ERROR | SWT.OK);
 				           dialog.setText("Erro");
 				           dialog.setMessage("Todos os campos sao obrigatorios");
@@ -345,6 +342,8 @@ public class TelaManutencaoVendedor {
 			        int year = Integer.parseInt(dateParts[2]);
 			        int month = Integer.parseInt(dateParts[1]);
 			        int day = Integer.parseInt(dateParts[0]);
+			        
+			        //
 			        Endereco endereco = new Endereco(
 			        	    textEndereco.getText(),
 			        	    Integer.parseInt(textNumero.getText()),
@@ -397,6 +396,7 @@ public class TelaManutencaoVendedor {
 				            messageBox.setText("Sucesso");
 				            messageBox.setMessage("Cadastro realizado com sucesso");
 				            messageBox.open();
+				            //reset
 				            reset();
 				            btnFeminino.setSelection(false);
 				    	    btnFeminino.setEnabled(false);
