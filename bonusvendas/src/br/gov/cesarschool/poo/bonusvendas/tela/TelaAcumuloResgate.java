@@ -80,6 +80,8 @@ public class TelaAcumuloResgate {
 			public void widgetSelected(SelectionEvent e) {
 			}
 		});
+		btnRadioAcumulo.setBackground(SWTResourceManager.getColor(80, 80, 80));
+		btnRadioAcumulo.setForeground(SWTResourceManager.getColor(241, 241, 241));
 		btnRadioAcumulo.setBounds(39, 180, 98, 25);
 		btnRadioAcumulo.setText("Acumulo");
 		
@@ -90,6 +92,8 @@ public class TelaAcumuloResgate {
 			public void widgetSelected(SelectionEvent e) {
 			}
 		});
+		btnRadioResgate.setBackground(SWTResourceManager.getColor(80, 80, 80));
+		btnRadioResgate.setForeground(SWTResourceManager.getColor(241, 241, 241));
 		btnRadioResgate.setBounds(143, 180, 98, 25);
 		btnRadioResgate.setText("Resgate");
 		
@@ -119,22 +123,32 @@ public class TelaAcumuloResgate {
 		
 		Label lblValor = new Label(shell, SWT.NONE);
 		lblValor.setBounds(36, 391, 81, 25);
+		lblValor.setForeground(SWTResourceManager.getColor(214, 214, 214));
+		lblValor.setBackground(SWTResourceManager.getColor(80, 80, 80));
 		lblValor.setText("Valor");
 		
 		Label lblSaldoAtual = new Label(shell, SWT.NONE);
 		lblSaldoAtual.setBounds(36, 332, 105, 25);
+		lblSaldoAtual.setForeground(SWTResourceManager.getColor(214, 214, 214));
+		lblSaldoAtual.setBackground(SWTResourceManager.getColor(80, 80, 80));
 		lblSaldoAtual.setText("Saldo Atual");
 		
 		Label lblOperacao = new Label(shell, SWT.NONE);
 		lblOperacao.setBounds(39, 149, 81, 25);
+		lblOperacao.setForeground(SWTResourceManager.getColor(214, 214, 214));
+		lblOperacao.setBackground(SWTResourceManager.getColor(80, 80, 80));
 		lblOperacao.setText("Operação");
 		
 		Label lblTipoDeResgate = new Label(shell, SWT.NONE);
 		lblTipoDeResgate.setBounds(36, 469, 134, 25);
+		lblTipoDeResgate.setForeground(SWTResourceManager.getColor(214, 214, 214));
+		lblTipoDeResgate.setBackground(SWTResourceManager.getColor(80, 80, 80));
 		lblTipoDeResgate.setText("Tipo de resgate");
 		
 		Label lblNmeroDaCaixa = new Label(shell, SWT.NONE);
 		lblNmeroDaCaixa.setBounds(39, 59, 243, 25);
+		lblNmeroDaCaixa.setForeground(SWTResourceManager.getColor(214, 214, 214));
+		lblNmeroDaCaixa.setBackground(SWTResourceManager.getColor(80, 80, 80));
 		lblNmeroDaCaixa.setText("Número da Caixa de Bonus");
 		
 		Label lblBonus = new Label(shell, SWT.NONE);
