@@ -35,6 +35,7 @@ public class TelaAcumuloResgate {
 	private Text textValor;
 	private Text textNrCaixaDeBonus;
 	private Button btnConfirmar;
+	private Button btnCancelar;
 
 	/**
 	 * Launch the application.
@@ -67,25 +68,6 @@ public class TelaAcumuloResgate {
 	/**
 	 * Create contents of the window.
 	 */
-	
-	private void enableBusca() {
-		
-	}
-	
-	//busca:
-	//enable:
-	//num de caixa
-	//operacao
-	//botao busca
-	
-	//acumulo:
-	//enable
-	//all-
-	//tipo de resgate
-	
-	//resgate:
-	//enable: 
-	//all
 	
 	
 	protected void createContents() {
@@ -183,16 +165,12 @@ public class TelaAcumuloResgate {
 		comboTipoDeResgate.setBounds(358, 235, 104, 33);
 		
 		String[] tiposResgate = {
-			    "Produto", "Serviço", "Cash"
+			    "Produto", "Servico", "Cash"
 			};
 		
 			for (String tipo : tiposResgate) {
 			    comboTipoDeResgate.add(tipo);
 			}
-		
-		
-		
-		
 		
 		
 		btnConfirmar = new Button(shell, SWT.NONE);
@@ -216,81 +194,48 @@ public class TelaAcumuloResgate {
 				        }
 				 	
 				 	long numCaixa = Long.parseLong(textNrCaixaDeBonus.getText());
-		
 				 	double valor = Double.parseDouble(textValor.getText());
 				 	
-				 	if(btnRadioResgate.getSelection()) {
-				 		TipoResgate tipoResgate = tipo
-				 	}
-//			        
-//			        
-//			        String inputData = textDataDeNascimento.getText();
-//			        if (!isValidData(inputData)) {
-//			            MessageBox messageBox = new MessageBox(shlBonusVendas, SWT.ICON_ERROR | SWT.OK);
-//			            messageBox.setText("Erro");
-//			            messageBox.setMessage("Data de Nascimento nao esta no formato correto (dd/MM/yyyy) ou invalida");
-//			            messageBox.open();
-//			            return;
-//			        }
-//			        
-//			        String[] dateParts = textDataDeNascimento.getText().split("/");
-//			        int year = Integer.parseInt(dateParts[2]);
-//			        int month = Integer.parseInt(dateParts[1]);
-//			        int day = Integer.parseInt(dateParts[0]);
-//			        
-//			        //
-//			        
-//			        
-//			        
-//			        VendedorMediator mediator = VendedorMediator.getInstance();
-//			        
-//			        if (alterar) {
-//			            String alterarResult = mediator.alterar(vendedor);
-//			            if (alterarResult != null) {
-//			                MessageBox messageBox = new MessageBox(shlBonusVendas, SWT.ICON_ERROR | SWT.OK);
-//			                messageBox.setText("Erro");
-//			                messageBox.setMessage(alterarResult);
-//			                messageBox.open();
-//			            } else {
-//			                MessageBox messageBox = new MessageBox(shlBonusVendas, SWT.ICON_INFORMATION | SWT.OK);
-//			                messageBox.setText("Sucesso");
-//			                messageBox.setMessage("Alteração realizada com sucesso");
-//			                messageBox.open();
-//				            reset();
-//				            btnFeminino.setSelection(false);
-//				    	    btnFeminino.setEnabled(false);
-//				    	    btnMasculino.setSelection(false);
-//				    	    btnMasculino.setEnabled(false);
-//				    	    btnConfirmar.setEnabled(false);
-//			            }
-//			            alterar = false;
-//			        } else {
-//				        ResultadoInclusaoVendedor result = mediator.incluir(vendedor);
-//				        if (result.getMensagemErroValidacao() != null) {
-//				            MessageBox messageBox = new MessageBox(shlBonusVendas, SWT.ICON_ERROR | SWT.OK);
-//				            messageBox.setText("Erro");
-//				            messageBox.setMessage(result.getMensagemErroValidacao());
-//				            messageBox.open();
-//				        } else {
-//				            MessageBox messageBox = new MessageBox(shlBonusVendas, SWT.ICON_INFORMATION | SWT.OK);
-//				            messageBox.setText("Sucesso");
-//				            messageBox.setMessage("Cadastro realizado com sucesso");
-//				            messageBox.open();
-//				            //reset
-//				            reset();
-//				            btnFeminino.setSelection(false);
-//				    	    btnFeminino.setEnabled(false);
-//				    	    btnMasculino.setSelection(false);
-//				    	    btnMasculino.setEnabled(false);
-//				    	    btnConfirmar.setEnabled(false);
-//				        }
-//			        }
-			        
+				 	AcumuloResgateMediator mediator = AcumuloResgateMediator.getInstance();
 
+			        String message = "";
+
+			        if(btnRadioResgate.getSelection()) {
+			            TipoResgate tipoResgate = TipoResgate.valueOf(comboTipoDeResgate.getText().toUpperCase());
+			            message = mediator.resgatar(numCaixa, valor, tipoResgate);
+			        } else {
+			            message = mediator.acumularBonus(numCaixa, valor);
+			        }
+
+			        if (message != null && !message.isEmpty()) {
+		                MessageBox dialog = new MessageBox(shell, SWT.ERROR | SWT.OK);
+		                dialog.setText("Resultado");
+		                dialog.setMessage(message);
+		                dialog.open();
+		            } else {
+		                MessageBox dialog = new MessageBox(shell, SWT.ICON_INFORMATION | SWT.OK);
+		                dialog.setText("Sucesso");
+		                dialog.setMessage("Operação realizada com sucesso!");
+		                dialog.open();
+		            }
+			        textNrCaixaDeBonus.setText("");
+					textSaldoAtual.setText("");
+					textValor.setText("");
+					comboTipoDeResgate.deselectAll();
+					
+					textSaldoAtual.setEnabled(false);
+					textValor.setEnabled(false);
+					comboTipoDeResgate.setEnabled(false);
+					btnCancelar.setEnabled(false);
+					btnConfirmar.setEnabled(false);
+					
+					textNrCaixaDeBonus.setEnabled(true);
+			    	btnRadioAcumulo.setEnabled(true);
+			    	btnRadioResgate.setEnabled(true);
 			    }
 			});
 		
-		Button btnCancelar = new Button(shell, SWT.NONE);
+		btnCancelar = new Button(shell, SWT.NONE);
 		btnCancelar.setEnabled(false);
 		btnCancelar.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -305,8 +250,6 @@ public class TelaAcumuloResgate {
 				comboTipoDeResgate.setEnabled(false);
 				btnCancelar.setEnabled(false);
 				btnConfirmar.setEnabled(false);
-				
-			
 				
 				textNrCaixaDeBonus.setEnabled(true);
 		    	btnRadioAcumulo.setEnabled(true);
@@ -327,7 +270,6 @@ public class TelaAcumuloResgate {
 				CaixaDeBonus caixaDeBonus = mediator.buscar(Long.parseLong(textNrCaixaDeBonus.getText().replaceAll("[^0-9]", "")));
 				
 			    if (caixaDeBonus != null) {
-			    	caixaDeBonus.creditar(200);
 			    	textSaldoAtual.setEnabled(true);
 			    	textSaldoAtual.setText(""+caixaDeBonus.getSaldo());
 			    	
@@ -342,59 +284,16 @@ public class TelaAcumuloResgate {
 			    	btnRadioResgate.setEnabled(false);
 			    	
 			    	if(btnRadioResgate.getSelection()) {
-			    		comboTipoDeResgate.setEnabled(true);
-			    		
+			    		comboTipoDeResgate.setEnabled(true);    		
 			    	}
 			    	else {
 			    		comboTipoDeResgate.setEnabled(false);
-			    		
-			    	}
-//			        textNomeCompleto.setText(vendedor.getNomeCompleto());
-//			        textNomeCompleto.setEnabled(true);
-//			        
-//			        textDataDeNascimento.setText(vendedor.getDataNascimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-//			        textDataDeNascimento.setEnabled(true);
-//			        
-//			        textSaldoAtual.setText(String.format("%.2f", vendedor.getRenda()));
-//			        textSaldoAtual.setEnabled(true);
-//			        
-//			        Endereco endereco = vendedor.getEndereco();
-//			        textEndereco.setText(endereco.getLogradouro());
-//			        textEndereco.setEnabled(true);
-//			        
-//			        textComplemento.setText(endereco.getComplemento());
-//			        textComplemento.setEnabled(true);
-//			        
-//			        textNumero.setText(String.valueOf(endereco.getNumero()));
-//			        textNumero.setEnabled(true);
-//			        
-//			        textCep.setText(endereco.getCep());
-//			        textCep.setEnabled(true);
-//			        
-//			        textCidade.setText(endereco.getCidade());
-//			        textCidade.setEnabled(true);
-//			       
-//			        int index = Arrays.asList(estadosBrasileiros).indexOf(endereco.getEstado());
-//			        comboEstado.select(index);
-//			        comboEstado.setEnabled(true);
-//	        
-//			        if (vendedor.getSexo() == Sexo.FEMININO) {
-//			            btnFeminino.setSelection(true);
-//			        } else {
-//			            btnMasculino.setSelection(true);
-//			        }
-//			        
-//			        btnFeminino.setEnabled(true);
-//			        btnMasculino.setEnabled(true);
-//			        
-//			        btnConfirmar.setEnabled(true);
-//			        btnCancelar.setEnabled(true);
-//			        alterar = true;
+			    	}		      
 			    } else {
-//			        MessageBox dialog = new MessageBox(shlBonusVendas, SWT.ERROR | SWT.OK);
-//			        dialog.setText("Erro");
-//			        dialog.setMessage("Vendedor nao encontrado!");
-//			        dialog.open();
+			        MessageBox dialog = new MessageBox(shell, SWT.ERROR | SWT.OK);
+			        dialog.setText("Erro");
+			        dialog.setMessage("Caixa de Bonus nao encontrada!");
+			        dialog.open();
 			    }
 			}
 		});
