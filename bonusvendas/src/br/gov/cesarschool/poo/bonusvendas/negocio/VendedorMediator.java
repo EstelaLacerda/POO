@@ -75,12 +75,13 @@ public class VendedorMediator {
     }
     
     private String validar(Vendedor vendedor) {
+    	
+        if (StringUtil.ehNuloOuBranco(vendedor.getCpf())) {
+            return "CPF nao informado";
+        }
 
         if (!ValidadorCPF.ehCpfValido(vendedor.getCpf())) {
             return "CPF invalido";
-        }
-        if (StringUtil.ehNuloOuBranco(vendedor.getCpf())) {
-            return "CPF nao informado";
         }
         
         if (StringUtil.ehNuloOuBranco(vendedor.getNomeCompleto())) {

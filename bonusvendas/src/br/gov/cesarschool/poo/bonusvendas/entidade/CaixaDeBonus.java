@@ -8,7 +8,7 @@ public class CaixaDeBonus implements Serializable {
 	// Attributes
 	private long numero;
 	private double saldo;
-	private LocalDateTime dataHoraAtualizacao;
+	private LocalDateTime dataHoraAtualizacao = java.time.LocalDateTime.now();
 	
 	//Constructor
 	public CaixaDeBonus(long numero) {

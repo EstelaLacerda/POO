@@ -21,10 +21,12 @@
 	<classpathentry kind="lib" path="C:/Users/pedro/.p2/pool/plugins/javax.annotation_1.3.5.v20200909-1856.jar" sourcepath="C:/Users/pedro/.p2/pool/plugins/javax.annotation_1.3.5.v20200909-1856.jar"/>
 	<classpathentry kind="lib" path="C:/Users/pedro/.p2/pool/plugins/org.eclipse.e4.ui.di_1.5.100.v20230630-1554.jar" sourcepath="C:/Users/pedro/.p2/pool/plugins/org.eclipse.e4.ui.di_1.5.100.v20230630-1554.jar"/>
 	<classpathentry kind="lib" path="lib/PersistenciaObjetos.jar"/>
+	<classpathentry kind="lib" path="lib/oblesqbom.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/DAO">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
