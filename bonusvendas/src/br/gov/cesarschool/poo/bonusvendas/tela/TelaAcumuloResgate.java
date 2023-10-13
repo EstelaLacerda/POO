@@ -4,22 +4,12 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Combo;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.wb.swt.SWTResourceManager;
 
 import br.gov.cesarschool.poo.bonusvendas.entidade.CaixaDeBonus;
 import br.gov.cesarschool.poo.bonusvendas.entidade.TipoResgate;
-import br.gov.cesarschool.poo.bonusvendas.entidade.Vendedor;
-import br.gov.cesarschool.poo.bonusvendas.entidade.geral.Endereco;
-import br.gov.cesarschool.poo.bonusvendas.entidade.geral.Sexo;
 import br.gov.cesarschool.poo.bonusvendas.negocio.AcumuloResgateMediator;
-import br.gov.cesarschool.poo.bonusvendas.negocio.ResultadoInclusaoVendedor;
-import br.gov.cesarschool.poo.bonusvendas.negocio.VendedorMediator;
 
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Label;
@@ -73,7 +63,6 @@ public class TelaAcumuloResgate {
 	protected void createContents() {
 		shell = new Shell();
 		shell.setSize(803, 449);
-		shell.setBackground(SWTResourceManager.getColor(80, 80, 80));
 		shell.setText("Bonus Vendas");
 		
 		// TEXT-BOXES
@@ -139,8 +128,6 @@ public class TelaAcumuloResgate {
 				btnConfirmar.setText("Acumular");
 			}
 		});
-		btnRadioAcumulo.setBackground(SWTResourceManager.getColor(80, 80, 80));
-		btnRadioAcumulo.setForeground(SWTResourceManager.getColor(241, 241, 241));
 		btnRadioAcumulo.setBounds(39, 180, 98, 25);
 		btnRadioAcumulo.setText("Acumulo");
 		btnRadioAcumulo.setSelection(true);
@@ -153,8 +140,6 @@ public class TelaAcumuloResgate {
 				btnConfirmar.setText("Resgatar");
 			}
 		});
-		btnRadioResgate.setBackground(SWTResourceManager.getColor(80, 80, 80));
-		btnRadioResgate.setForeground(SWTResourceManager.getColor(241, 241, 241));
 		btnRadioResgate.setBounds(143, 180, 98, 25);
 		btnRadioResgate.setText("Resgate");
 		
@@ -176,7 +161,6 @@ public class TelaAcumuloResgate {
 		btnConfirmar = new Button(shell, SWT.NONE);
 		btnConfirmar.setEnabled(false);
 		btnConfirmar.setBounds(608, 325, 126, 35);
-		btnConfirmar.setForeground(SWTResourceManager.getColor(0, 153, 0));
 		btnConfirmar.setText("Acumular");
 		btnConfirmar.addSelectionListener(new SelectionAdapter() {
 			 @Override
@@ -257,7 +241,6 @@ public class TelaAcumuloResgate {
 			}
 		});
 		btnCancelar.setBounds(482, 325, 105, 35);
-		btnCancelar.setForeground(SWTResourceManager.getColor(208, 0, 0));
 		btnCancelar.setText("Voltar");
 		
 		Button btnBuscar = new Button(shell, SWT.NONE);
@@ -302,39 +285,26 @@ public class TelaAcumuloResgate {
 		
 		Label lblValor = new Label(shell, SWT.NONE);
 		lblValor.setBounds(358, 126, 81, 25);
-		lblValor.setForeground(SWTResourceManager.getColor(214, 214, 214));
-		lblValor.setBackground(SWTResourceManager.getColor(80, 80, 80));
 		lblValor.setText("Valor");
 		
 		Label lblSaldoAtual = new Label(shell, SWT.NONE);
 		lblSaldoAtual.setBounds(358, 67, 105, 25);
-		lblSaldoAtual.setForeground(SWTResourceManager.getColor(214, 214, 214));
-		lblSaldoAtual.setBackground(SWTResourceManager.getColor(80, 80, 80));
 		lblSaldoAtual.setText("Saldo Atual");
 		
 		Label lblOperacao = new Label(shell, SWT.NONE);
 		lblOperacao.setBounds(39, 149, 81, 25);
-		lblOperacao.setForeground(SWTResourceManager.getColor(214, 214, 214));
-		lblOperacao.setBackground(SWTResourceManager.getColor(80, 80, 80));
 		lblOperacao.setText("Operação");
 		
 		Label lblTipoDeResgate = new Label(shell, SWT.NONE);
 		lblTipoDeResgate.setBounds(358, 204, 134, 25);
-		lblTipoDeResgate.setForeground(SWTResourceManager.getColor(214, 214, 214));
-		lblTipoDeResgate.setBackground(SWTResourceManager.getColor(80, 80, 80));
 		lblTipoDeResgate.setText("Tipo de resgate");
 		
 		Label lblNmeroDaCaixa = new Label(shell, SWT.NONE);
 		lblNmeroDaCaixa.setBounds(39, 59, 243, 25);
-		lblNmeroDaCaixa.setForeground(SWTResourceManager.getColor(214, 214, 214));
-		lblNmeroDaCaixa.setBackground(SWTResourceManager.getColor(80, 80, 80));
 		lblNmeroDaCaixa.setText("Número da Caixa de Bonus");
 		
 		Label lblBonus = new Label(shell, SWT.NONE);
-		lblBonus.setForeground(SWTResourceManager.getColor(255, 255, 255));
-		lblBonus.setBackground(SWTResourceManager.getColor(80, 80, 80));
 		lblBonus.setAlignment(SWT.CENTER);
-		lblBonus.setFont(SWTResourceManager.getFont("Bahnschrift", 20, SWT.BOLD));
 		lblBonus.setBounds(624, 10, 175, 48);
 		lblBonus.setText("Bonus");
 		

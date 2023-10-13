@@ -10,7 +10,6 @@ import java.util.Arrays;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.wb.swt.SWTResourceManager;
 
 import br.gov.cesarschool.poo.bonusvendas.entidade.Vendedor;
 import br.gov.cesarschool.poo.bonusvendas.entidade.geral.Endereco;
@@ -86,7 +85,6 @@ public class TelaManutencaoVendedor {
 	protected void createContents() {
 		shlBonusVendas = new Shell();
 		shlBonusVendas.setSize(new Point(1189, 618));
-		shlBonusVendas.setBackground(SWTResourceManager.getColor(80, 80, 80));
 		shlBonusVendas.setText("Bonus Vendas");
 		
 		
@@ -270,8 +268,6 @@ public class TelaManutencaoVendedor {
 		
 		Button btnFeminino = new Button(shlBonusVendas, SWT.RADIO);
 		btnFeminino.setEnabled(false);
-		btnFeminino.setBackground(SWTResourceManager.getColor(80, 80, 80));
-		btnFeminino.setForeground(SWTResourceManager.getColor(241, 241, 241));
 		btnFeminino.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -282,17 +278,12 @@ public class TelaManutencaoVendedor {
 		
 		Button btnMasculino = new Button(shlBonusVendas, SWT.RADIO);
 		btnMasculino.setEnabled(false);
-		btnMasculino.setBackground(SWTResourceManager.getColor(80, 80, 80));
-		btnMasculino.setForeground(SWTResourceManager.getColor(241, 241, 241));
 		btnMasculino.setText("Masculino");
 		btnMasculino.setBounds(414, 321, 169, 25);
 		
 		
-		
 		// BUTTON
 		
-		
-	
 		Button btnConfirmar = new Button(shlBonusVendas, SWT.NONE);
 		btnConfirmar.setEnabled(false);
 		btnConfirmar.addSelectionListener(new SelectionAdapter() {
@@ -409,14 +400,12 @@ public class TelaManutencaoVendedor {
 
 			    }
 			});
-		btnConfirmar.setForeground(SWTResourceManager.getColor(0, 153, 0));
 		btnConfirmar.setBounds(1031, 498, 105, 35);
 		btnConfirmar.setText("Confirmar");
 
 		Button btnCancelar = new Button(shlBonusVendas, SWT.NONE);
 		btnCancelar.setEnabled(false);
 		btnCancelar.setText("Cancelar");
-		btnCancelar.setForeground(SWTResourceManager.getColor(208, 0, 0));
 		btnCancelar.setBounds(908, 498, 105, 35);
 		btnCancelar.addSelectionListener(new SelectionAdapter() {
 		    @Override
@@ -497,8 +486,6 @@ public class TelaManutencaoVendedor {
 		
 		
 		Button btnCadastrar = new Button(shlBonusVendas, SWT.NONE);
-		btnCadastrar.setForeground(SWTResourceManager.getColor(255, 255, 255));
-		btnCadastrar.setBackground(SWTResourceManager.getColor(0, 0, 0));
 		btnCadastrar.setText("Cadastrar");
 		btnCadastrar.setBounds(370, 96, 105, 33);
 		btnCadastrar.addSelectionListener(new SelectionAdapter() {
@@ -546,81 +533,53 @@ public class TelaManutencaoVendedor {
 		
 		lblCpf = new Label(shlBonusVendas, SWT.NONE);
 		lblCpf.setText("CPF");
-		lblCpf.setForeground(SWTResourceManager.getColor(214, 214, 214));
-		lblCpf.setBackground(SWTResourceManager.getColor(80, 80, 80));
 		lblCpf.setBounds(68, 65, 35, 25);
 			
 		lblNomeCompleto = new Label(shlBonusVendas, SWT.NONE);
-		lblNomeCompleto.setForeground(SWTResourceManager.getColor(214, 214, 214));
-		lblNomeCompleto.setBackground(SWTResourceManager.getColor(80, 80, 80));
 		lblNomeCompleto.setText("Nome Completo");
 		lblNomeCompleto.setBounds(68, 206, 151, 25);
 		
 		lblDataDeNascimento = new Label(shlBonusVendas, SWT.NONE);
-		lblDataDeNascimento.setForeground(SWTResourceManager.getColor(214, 214, 214));
-		lblDataDeNascimento.setBackground(SWTResourceManager.getColor(80, 80, 80));
 		lblDataDeNascimento.setText("Data de Nascimento");
 		lblDataDeNascimento.setBounds(68, 290, 174, 25);
 
 		lblSexo = new Label(shlBonusVendas, SWT.NONE);
-		lblSexo.setForeground(SWTResourceManager.getColor(214, 214, 214));
-		lblSexo.setBackground(SWTResourceManager.getColor(80, 80, 80));
 		lblSexo.setText("Sexo");
 		lblSexo.setBounds(308, 290, 81, 25);
 		
 		lblRenda = new Label(shlBonusVendas, SWT.NONE);
-		lblRenda.setForeground(SWTResourceManager.getColor(214, 214, 214));
-		lblRenda.setBackground(SWTResourceManager.getColor(80, 80, 80));
 		lblRenda.setText("Renda");
 		lblRenda.setBounds(68, 380, 81, 25);
 	
 		lblEndereco = new Label(shlBonusVendas, SWT.NONE);
-		lblEndereco.setForeground(SWTResourceManager.getColor(214, 214, 214));
-		lblEndereco.setBackground(SWTResourceManager.getColor(80, 80, 80));
 		lblEndereco.setText("Endereço");
 		lblEndereco.setBounds(605, 206, 81, 25);
 		
 		lblComplemento = new Label(shlBonusVendas, SWT.NONE);
-		lblComplemento.setForeground(SWTResourceManager.getColor(214, 214, 214));
-		lblComplemento.setBackground(SWTResourceManager.getColor(80, 80, 80));
 		lblComplemento.setText("Complemento");
 		lblComplemento.setBounds(605, 285, 126, 25);
 		
 		lblNumero = new Label(shlBonusVendas, SWT.NONE);
 		lblNumero.setText("Número");
-		lblNumero.setForeground(SWTResourceManager.getColor(214, 214, 214));
-		lblNumero.setBackground(SWTResourceManager.getColor(80, 80, 80));
 		lblNumero.setBounds(1011, 206, 81, 25);
 
 		lblCep = new Label(shlBonusVendas, SWT.NONE);
 		lblCep.setText("CEP");
-		lblCep.setForeground(SWTResourceManager.getColor(214, 214, 214));
-		lblCep.setBackground(SWTResourceManager.getColor(80, 80, 80));
 		lblCep.setBounds(1012, 285, 81, 25);
 		
 		lblCidade = new Label(shlBonusVendas, SWT.NONE);
 		lblCidade.setText("Cidade");
-		lblCidade.setForeground(SWTResourceManager.getColor(214, 214, 214));
-		lblCidade.setBackground(SWTResourceManager.getColor(80, 80, 80));
 		lblCidade.setBounds(605, 373, 81, 25);
 		
 		lblEstado = new Label(shlBonusVendas, SWT.NONE);
 		lblEstado.setText("Estado\r\n");
-		lblEstado.setForeground(SWTResourceManager.getColor(214, 214, 214));
-		lblEstado.setBackground(SWTResourceManager.getColor(80, 80, 80));
 		lblEstado.setBounds(861, 373, 81, 25);
 		
 		Label horizLine = new Label(shlBonusVendas, SWT.SEPARATOR | SWT.HORIZONTAL);
-		horizLine.setForeground(SWTResourceManager.getColor(99, 99, 99));
-		horizLine.setBackground(SWTResourceManager.getColor(99, 99, 99));
 		horizLine.setBounds(70, 171, 321, 2);
 		shlBonusVendas.setTabList(new Control[]{textCpf, btnBuscar, btnCadastrar, textNomeCompleto, textDataDeNascimento, btnFeminino, btnMasculino, textRenda, textEndereco, textNumero, textComplemento, textCep, textCidade, comboEstado, btnCancelar, btnConfirmar});
 
 		Label logoVendedor = new Label(shlBonusVendas, SWT.NONE);
-		logoVendedor.setForeground(SWTResourceManager.getColor(255, 255, 255));
-		logoVendedor.setBackground(SWTResourceManager.getColor(80, 80, 80));
-		logoVendedor.setAlignment(SWT.CENTER);
-		logoVendedor.setFont(SWTResourceManager.getFont("Bahnschrift", 20, SWT.BOLD));
 		logoVendedor.setBounds(912, 10, 281, 49);
 		logoVendedor.setText("Vendedor");
 		
