@@ -108,4 +108,8 @@ public class AcumuloResgateMediator {
 	    return null;
 	}
 
+	public CaixaDeBonus buscar(long numeroCaixaDeBonus) {
+    	return repositorioCaixaDeBonus.buscar(numeroCaixaDeBonus);
+    }
+	
 }

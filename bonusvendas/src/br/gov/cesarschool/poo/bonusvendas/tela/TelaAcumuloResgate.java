@@ -3,11 +3,28 @@ package br.gov.cesarschool.poo.bonusvendas.tela;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Combo;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
+
+import br.gov.cesarschool.poo.bonusvendas.entidade.CaixaDeBonus;
+import br.gov.cesarschool.poo.bonusvendas.entidade.TipoResgate;
+import br.gov.cesarschool.poo.bonusvendas.entidade.Vendedor;
+import br.gov.cesarschool.poo.bonusvendas.entidade.geral.Endereco;
+import br.gov.cesarschool.poo.bonusvendas.entidade.geral.Sexo;
+import br.gov.cesarschool.poo.bonusvendas.negocio.AcumuloResgateMediator;
+import br.gov.cesarschool.poo.bonusvendas.negocio.ResultadoInclusaoVendedor;
+import br.gov.cesarschool.poo.bonusvendas.negocio.VendedorMediator;
+
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.MessageBox;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
@@ -17,6 +34,7 @@ public class TelaAcumuloResgate {
 	private Text textSaldoAtual;
 	private Text textValor;
 	private Text textNrCaixaDeBonus;
+	private Button btnConfirmar;
 
 	/**
 	 * Launch the application.
@@ -49,6 +67,27 @@ public class TelaAcumuloResgate {
 	/**
 	 * Create contents of the window.
 	 */
+	
+	private void enableBusca() {
+		
+	}
+	
+	//busca:
+	//enable:
+	//num de caixa
+	//operacao
+	//botao busca
+	
+	//acumulo:
+	//enable
+	//all-
+	//tipo de resgate
+	
+	//resgate:
+	//enable: 
+	//all
+	
+	
 	protected void createContents() {
 		shell = new Shell();
 		shell.setSize(803, 449);
@@ -59,37 +98,77 @@ public class TelaAcumuloResgate {
 		
 		textNrCaixaDeBonus = new Text(shell, SWT.BORDER);
 		textNrCaixaDeBonus.setBounds(39, 101, 158, 31);
+		ModifyListener[] numeroListenerContainer = new ModifyListener[1];
+
+		numeroListenerContainer[0] = e -> {
+		    String numero = textNrCaixaDeBonus.getText();
+		    numero = numero.replaceAll("[^0-9]", "");
+
+		    textNrCaixaDeBonus.removeModifyListener(numeroListenerContainer[0]);
+		    textNrCaixaDeBonus.setText(numero);
+		    textNrCaixaDeBonus.setSelection(numero.length());
+		    textNrCaixaDeBonus.addModifyListener(numeroListenerContainer[0]);
+		};
+
+		textNrCaixaDeBonus.addModifyListener(numeroListenerContainer[0]);
 		
-		textSaldoAtual = new Text(shell, SWT.BORDER);
+		
+		textSaldoAtual = new Text(shell, SWT.BORDER|SWT.READ_ONLY);
+		textSaldoAtual.setEnabled(false);
 		textSaldoAtual.setBounds(469, 64, 158, 31);
 		
-		textValor = new Text(shell, SWT.BORDER);
-		textValor.setBounds(358, 154, 80, 31);
 		
+		
+		textValor = new Text(shell, SWT.BORDER);
+		textValor.setEnabled(false);
+		textValor.setBounds(358, 154, 80, 31);
+		ModifyListener[] valorListenerContainer = new ModifyListener[1];
+
+		valorListenerContainer[0] = e -> {
+		    String valor = textValor.getText();
+		    valor = valor.replaceAll("[^0-9]", "");
+		    
+		    StringBuilder formattedValor = new StringBuilder(valor);
+		    
+		    while (formattedValor.length() < 3) {
+		        formattedValor.insert(0, '0');
+		    }
+
+		    formattedValor.insert(formattedValor.length() - 2, '.');
+		    
+		    if (formattedValor.length() - formattedValor.indexOf(".") > 3) {
+		        formattedValor = new StringBuilder(formattedValor.substring(0, formattedValor.indexOf(".") + 3));
+		    }
+
+		    textValor.removeModifyListener(valorListenerContainer[0]);
+		    textValor.setText(formattedValor.toString());
+		    textValor.setSelection(formattedValor.length());
+		    textValor.addModifyListener(valorListenerContainer[0]);
+		};
+
+		textValor.addModifyListener(valorListenerContainer[0]);
 		
 		// BUTTONS
-		
 	
-		Button btnBuscar = new Button(shell, SWT.NONE);
-		btnBuscar.setBounds(39, 230, 105, 35);
-		btnBuscar.setText("Buscar");
-		
 		Button btnRadioAcumulo = new Button(shell, SWT.RADIO);
 		btnRadioAcumulo.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				btnConfirmar.setText("Acumular");
 			}
 		});
 		btnRadioAcumulo.setBackground(SWTResourceManager.getColor(80, 80, 80));
 		btnRadioAcumulo.setForeground(SWTResourceManager.getColor(241, 241, 241));
 		btnRadioAcumulo.setBounds(39, 180, 98, 25);
 		btnRadioAcumulo.setText("Acumulo");
+		btnRadioAcumulo.setSelection(true);
 		
 		
 		Button btnRadioResgate = new Button(shell, SWT.RADIO);
 		btnRadioResgate.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				btnConfirmar.setText("Resgatar");
 			}
 		});
 		btnRadioResgate.setBackground(SWTResourceManager.getColor(80, 80, 80));
@@ -97,27 +176,228 @@ public class TelaAcumuloResgate {
 		btnRadioResgate.setBounds(143, 180, 98, 25);
 		btnRadioResgate.setText("Resgate");
 		
-
 		
-		Combo comboTipoDeResgate = new Combo(shell, SWT.NONE);
+		
+		Combo comboTipoDeResgate = new Combo(shell, SWT.READ_ONLY);
+		comboTipoDeResgate.setEnabled(false);
 		comboTipoDeResgate.setBounds(358, 235, 104, 33);
 		
+		String[] tiposResgate = {
+			    "Produto", "Serviço", "Cash"
+			};
 		
-		Button btnConfirmar = new Button(shell, SWT.NONE);
+			for (String tipo : tiposResgate) {
+			    comboTipoDeResgate.add(tipo);
+			}
+		
+		
+		
+		
+		
+		
+		btnConfirmar = new Button(shell, SWT.NONE);
+		btnConfirmar.setEnabled(false);
 		btnConfirmar.setBounds(608, 325, 126, 35);
-		btnConfirmar.setText("AcumularResgatar");
+		btnConfirmar.setForeground(SWTResourceManager.getColor(0, 153, 0));
+		btnConfirmar.setText("Acumular");
+		btnConfirmar.addSelectionListener(new SelectionAdapter() {
+			 @Override
+			    public void widgetSelected(SelectionEvent e) {
+				 	if(textNrCaixaDeBonus.getText().isEmpty() || 
+				           textSaldoAtual.getText().isEmpty() ||
+				           textValor.getText().isEmpty() ||
+				           comboTipoDeResgate.getText().isEmpty() && btnRadioResgate.getSelection()
+				           ){
+				           MessageBox dialog = new MessageBox(shell, SWT.ERROR | SWT.OK);
+				           dialog.setText("Erro");
+				           dialog.setMessage("Todos os campos sao obrigatorios");
+				           dialog.open();
+				           return;
+				        }
+				 	
+				 	long numCaixa = Long.parseLong(textNrCaixaDeBonus.getText());
 		
+				 	double valor = Double.parseDouble(textValor.getText());
+				 	
+				 	if(btnRadioResgate.getSelection()) {
+				 		TipoResgate tipoResgate = tipo
+				 	}
+//			        
+//			        
+//			        String inputData = textDataDeNascimento.getText();
+//			        if (!isValidData(inputData)) {
+//			            MessageBox messageBox = new MessageBox(shlBonusVendas, SWT.ICON_ERROR | SWT.OK);
+//			            messageBox.setText("Erro");
+//			            messageBox.setMessage("Data de Nascimento nao esta no formato correto (dd/MM/yyyy) ou invalida");
+//			            messageBox.open();
+//			            return;
+//			        }
+//			        
+//			        String[] dateParts = textDataDeNascimento.getText().split("/");
+//			        int year = Integer.parseInt(dateParts[2]);
+//			        int month = Integer.parseInt(dateParts[1]);
+//			        int day = Integer.parseInt(dateParts[0]);
+//			        
+//			        //
+//			        
+//			        
+//			        
+//			        VendedorMediator mediator = VendedorMediator.getInstance();
+//			        
+//			        if (alterar) {
+//			            String alterarResult = mediator.alterar(vendedor);
+//			            if (alterarResult != null) {
+//			                MessageBox messageBox = new MessageBox(shlBonusVendas, SWT.ICON_ERROR | SWT.OK);
+//			                messageBox.setText("Erro");
+//			                messageBox.setMessage(alterarResult);
+//			                messageBox.open();
+//			            } else {
+//			                MessageBox messageBox = new MessageBox(shlBonusVendas, SWT.ICON_INFORMATION | SWT.OK);
+//			                messageBox.setText("Sucesso");
+//			                messageBox.setMessage("Alteração realizada com sucesso");
+//			                messageBox.open();
+//				            reset();
+//				            btnFeminino.setSelection(false);
+//				    	    btnFeminino.setEnabled(false);
+//				    	    btnMasculino.setSelection(false);
+//				    	    btnMasculino.setEnabled(false);
+//				    	    btnConfirmar.setEnabled(false);
+//			            }
+//			            alterar = false;
+//			        } else {
+//				        ResultadoInclusaoVendedor result = mediator.incluir(vendedor);
+//				        if (result.getMensagemErroValidacao() != null) {
+//				            MessageBox messageBox = new MessageBox(shlBonusVendas, SWT.ICON_ERROR | SWT.OK);
+//				            messageBox.setText("Erro");
+//				            messageBox.setMessage(result.getMensagemErroValidacao());
+//				            messageBox.open();
+//				        } else {
+//				            MessageBox messageBox = new MessageBox(shlBonusVendas, SWT.ICON_INFORMATION | SWT.OK);
+//				            messageBox.setText("Sucesso");
+//				            messageBox.setMessage("Cadastro realizado com sucesso");
+//				            messageBox.open();
+//				            //reset
+//				            reset();
+//				            btnFeminino.setSelection(false);
+//				    	    btnFeminino.setEnabled(false);
+//				    	    btnMasculino.setSelection(false);
+//				    	    btnMasculino.setEnabled(false);
+//				    	    btnConfirmar.setEnabled(false);
+//				        }
+//			        }
+			        
+
+			    }
+			});
 		
 		Button btnCancelar = new Button(shell, SWT.NONE);
+		btnCancelar.setEnabled(false);
 		btnCancelar.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				textNrCaixaDeBonus.setText("");
+				textSaldoAtual.setText("");
+				textValor.setText("");
+				comboTipoDeResgate.deselectAll();
+				
+				textSaldoAtual.setEnabled(false);
+				textValor.setEnabled(false);
+				comboTipoDeResgate.setEnabled(false);
+				btnCancelar.setEnabled(false);
+				btnConfirmar.setEnabled(false);
+				
+			
+				
+				textNrCaixaDeBonus.setEnabled(true);
+		    	btnRadioAcumulo.setEnabled(true);
+		    	btnRadioResgate.setEnabled(true);
 			}
 		});
 		btnCancelar.setBounds(482, 325, 105, 35);
+		btnCancelar.setForeground(SWTResourceManager.getColor(208, 0, 0));
 		btnCancelar.setText("Voltar");
 		
-		
+		Button btnBuscar = new Button(shell, SWT.NONE);
+		btnBuscar.setBounds(39, 230, 105, 35);
+		btnBuscar.setText("Buscar");
+		btnBuscar.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				AcumuloResgateMediator mediator = AcumuloResgateMediator.getInstance();
+				CaixaDeBonus caixaDeBonus = mediator.buscar(Long.parseLong(textNrCaixaDeBonus.getText().replaceAll("[^0-9]", "")));
+				
+			    if (caixaDeBonus != null) {
+			    	caixaDeBonus.creditar(200);
+			    	textSaldoAtual.setEnabled(true);
+			    	textSaldoAtual.setText(""+caixaDeBonus.getSaldo());
+			    	
+			    	textValor.setEnabled(true);
+			    	textValor.setText(""+0.0);
+			    	
+			    	btnConfirmar.setEnabled(true);
+			    	btnCancelar.setEnabled(true);
+			    	
+			    	textNrCaixaDeBonus.setEnabled(false);
+			    	btnRadioAcumulo.setEnabled(false);
+			    	btnRadioResgate.setEnabled(false);
+			    	
+			    	if(btnRadioResgate.getSelection()) {
+			    		comboTipoDeResgate.setEnabled(true);
+			    		
+			    	}
+			    	else {
+			    		comboTipoDeResgate.setEnabled(false);
+			    		
+			    	}
+//			        textNomeCompleto.setText(vendedor.getNomeCompleto());
+//			        textNomeCompleto.setEnabled(true);
+//			        
+//			        textDataDeNascimento.setText(vendedor.getDataNascimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+//			        textDataDeNascimento.setEnabled(true);
+//			        
+//			        textSaldoAtual.setText(String.format("%.2f", vendedor.getRenda()));
+//			        textSaldoAtual.setEnabled(true);
+//			        
+//			        Endereco endereco = vendedor.getEndereco();
+//			        textEndereco.setText(endereco.getLogradouro());
+//			        textEndereco.setEnabled(true);
+//			        
+//			        textComplemento.setText(endereco.getComplemento());
+//			        textComplemento.setEnabled(true);
+//			        
+//			        textNumero.setText(String.valueOf(endereco.getNumero()));
+//			        textNumero.setEnabled(true);
+//			        
+//			        textCep.setText(endereco.getCep());
+//			        textCep.setEnabled(true);
+//			        
+//			        textCidade.setText(endereco.getCidade());
+//			        textCidade.setEnabled(true);
+//			       
+//			        int index = Arrays.asList(estadosBrasileiros).indexOf(endereco.getEstado());
+//			        comboEstado.select(index);
+//			        comboEstado.setEnabled(true);
+//	        
+//			        if (vendedor.getSexo() == Sexo.FEMININO) {
+//			            btnFeminino.setSelection(true);
+//			        } else {
+//			            btnMasculino.setSelection(true);
+//			        }
+//			        
+//			        btnFeminino.setEnabled(true);
+//			        btnMasculino.setEnabled(true);
+//			        
+//			        btnConfirmar.setEnabled(true);
+//			        btnCancelar.setEnabled(true);
+//			        alterar = true;
+			    } else {
+//			        MessageBox dialog = new MessageBox(shlBonusVendas, SWT.ERROR | SWT.OK);
+//			        dialog.setText("Erro");
+//			        dialog.setMessage("Vendedor nao encontrado!");
+//			        dialog.open();
+			    }
+			}
+		});
 		
 		//DESIGN
 		
