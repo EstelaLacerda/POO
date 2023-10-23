@@ -24,8 +24,6 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.wb.swt.SWTResourceManager;
-import org.eclipse.swt.custom.CLabel;
 
 public class TelaManutencaoVendedor {
 	
@@ -86,7 +84,6 @@ public class TelaManutencaoVendedor {
 	 */
 	protected void createContents() {
 		shlBonusVendas = new Shell();
-		shlBonusVendas.setBackground(SWTResourceManager.getColor(62, 62, 62));
 		shlBonusVendas.setSize(new Point(1189, 618));
 		shlBonusVendas.setText("Bonus Vendas");
 		
@@ -270,8 +267,6 @@ public class TelaManutencaoVendedor {
 		
 		
 		Button btnFeminino = new Button(shlBonusVendas, SWT.RADIO);
-		btnFeminino.setBackground(SWTResourceManager.getColor(62, 62, 62));
-		btnFeminino.setForeground(SWTResourceManager.getColor(255, 255, 255));
 		btnFeminino.setEnabled(false);
 		btnFeminino.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -282,8 +277,6 @@ public class TelaManutencaoVendedor {
 		btnFeminino.setText("Feminino");
 		
 		Button btnMasculino = new Button(shlBonusVendas, SWT.RADIO);
-		btnMasculino.setBackground(SWTResourceManager.getColor(62, 62, 62));
-		btnMasculino.setForeground(SWTResourceManager.getColor(255, 255, 255));
 		btnMasculino.setEnabled(false);
 		btnMasculino.setText("Masculino");
 		btnMasculino.setBounds(414, 321, 169, 25);
@@ -340,8 +333,6 @@ public class TelaManutencaoVendedor {
 			        int year = Integer.parseInt(dateParts[2]);
 			        int month = Integer.parseInt(dateParts[1]);
 			        int day = Integer.parseInt(dateParts[0]);
-			        LocalDate dataNascimento = LocalDate.of(year, month, day);
-			        
 			        
 			        //
 			        Endereco endereco = new Endereco(
@@ -357,7 +348,7 @@ public class TelaManutencaoVendedor {
 			            cpf,
 			            textNomeCompleto.getText(),
 			            selectedSex,
-			            dataNascimento,
+			            LocalDate.of(year, month, day),
 			            Double.parseDouble(textRenda.getText()),
 			            endereco
 			        );
@@ -541,68 +532,46 @@ public class TelaManutencaoVendedor {
 		
 		
 		lblCpf = new Label(shlBonusVendas, SWT.NONE);
-		lblCpf.setForeground(SWTResourceManager.getColor(255, 255, 255));
-		lblCpf.setBackground(SWTResourceManager.getColor(62, 62, 62));
 		lblCpf.setText("CPF");
 		lblCpf.setBounds(68, 65, 35, 25);
 			
 		lblNomeCompleto = new Label(shlBonusVendas, SWT.NONE);
-		lblNomeCompleto.setForeground(SWTResourceManager.getColor(255, 255, 255));
-		lblNomeCompleto.setBackground(SWTResourceManager.getColor(62, 62, 62));
 		lblNomeCompleto.setText("Nome Completo");
 		lblNomeCompleto.setBounds(68, 206, 151, 25);
 		
 		lblDataDeNascimento = new Label(shlBonusVendas, SWT.NONE);
-		lblDataDeNascimento.setForeground(SWTResourceManager.getColor(255, 255, 255));
-		lblDataDeNascimento.setBackground(SWTResourceManager.getColor(62, 62, 62));
 		lblDataDeNascimento.setText("Data de Nascimento");
 		lblDataDeNascimento.setBounds(68, 290, 174, 25);
 
 		lblSexo = new Label(shlBonusVendas, SWT.NONE);
-		lblSexo.setForeground(SWTResourceManager.getColor(255, 255, 255));
-		lblSexo.setBackground(SWTResourceManager.getColor(62, 62, 62));
 		lblSexo.setText("Sexo");
 		lblSexo.setBounds(308, 290, 81, 25);
 		
 		lblRenda = new Label(shlBonusVendas, SWT.NONE);
-		lblRenda.setForeground(SWTResourceManager.getColor(255, 255, 255));
-		lblRenda.setBackground(SWTResourceManager.getColor(62, 62, 62));
 		lblRenda.setText("Renda");
 		lblRenda.setBounds(68, 380, 81, 25);
 	
 		lblEndereco = new Label(shlBonusVendas, SWT.NONE);
-		lblEndereco.setForeground(SWTResourceManager.getColor(255, 255, 255));
-		lblEndereco.setBackground(SWTResourceManager.getColor(62, 62, 62));
 		lblEndereco.setText("Endereço");
 		lblEndereco.setBounds(605, 206, 81, 25);
 		
 		lblComplemento = new Label(shlBonusVendas, SWT.NONE);
-		lblComplemento.setForeground(SWTResourceManager.getColor(255, 255, 255));
-		lblComplemento.setBackground(SWTResourceManager.getColor(62, 62, 62));
 		lblComplemento.setText("Complemento");
 		lblComplemento.setBounds(605, 285, 126, 25);
 		
 		lblNumero = new Label(shlBonusVendas, SWT.NONE);
-		lblNumero.setForeground(SWTResourceManager.getColor(255, 255, 255));
-		lblNumero.setBackground(SWTResourceManager.getColor(62, 62, 62));
 		lblNumero.setText("Número");
 		lblNumero.setBounds(1011, 206, 81, 25);
 
 		lblCep = new Label(shlBonusVendas, SWT.NONE);
-		lblCep.setForeground(SWTResourceManager.getColor(255, 255, 255));
-		lblCep.setBackground(SWTResourceManager.getColor(62, 62, 62));
 		lblCep.setText("CEP");
 		lblCep.setBounds(1012, 285, 81, 25);
 		
 		lblCidade = new Label(shlBonusVendas, SWT.NONE);
-		lblCidade.setForeground(SWTResourceManager.getColor(255, 255, 255));
-		lblCidade.setBackground(SWTResourceManager.getColor(62, 62, 62));
 		lblCidade.setText("Cidade");
 		lblCidade.setBounds(605, 373, 81, 25);
 		
 		lblEstado = new Label(shlBonusVendas, SWT.NONE);
-		lblEstado.setForeground(SWTResourceManager.getColor(255, 255, 255));
-		lblEstado.setBackground(SWTResourceManager.getColor(62, 62, 62));
 		lblEstado.setText("Estado\r\n");
 		lblEstado.setBounds(861, 373, 81, 25);
 		
@@ -611,8 +580,6 @@ public class TelaManutencaoVendedor {
 		shlBonusVendas.setTabList(new Control[]{textCpf, btnBuscar, btnCadastrar, textNomeCompleto, textDataDeNascimento, btnFeminino, btnMasculino, textRenda, textEndereco, textNumero, textComplemento, textCep, textCidade, comboEstado, btnCancelar, btnConfirmar});
 
 		Label logoVendedor = new Label(shlBonusVendas, SWT.NONE);
-		logoVendedor.setBackground(SWTResourceManager.getColor(62, 62, 62));
-		logoVendedor.setForeground(SWTResourceManager.getColor(255, 255, 255));
 		logoVendedor.setBounds(912, 10, 281, 49);
 		logoVendedor.setText("Vendedor");
 		

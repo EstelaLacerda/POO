@@ -17,16 +17,8 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.wb.swt.SWTResourceManager;
-import org.eclipse.core.databinding.DataBindingContext;
-import org.eclipse.core.databinding.observable.value.IObservableValue;
-import org.eclipse.jface.databinding.swt.typed.WidgetProperties;
-import org.eclipse.core.databinding.beans.typed.PojoProperties;
-import org.eclipse.core.databinding.observable.Realm;
-import org.eclipse.jface.databinding.swt.DisplayRealm;
 
 public class TelaAcumuloResgate {
-	private DataBindingContext m_bindingContext;
 
 	protected Shell shell;
 	private Text textSaldoAtual;
@@ -34,24 +26,18 @@ public class TelaAcumuloResgate {
 	private Text textNrCaixaDeBonus;
 	private Button btnConfirmar;
 	private Button btnCancelar;
-	private Button btnRadioAcumulo;
 
 	/**
 	 * Launch the application.
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Display display = Display.getDefault();
-		Realm.runWithDefault(DisplayRealm.getRealm(display), new Runnable() {
-			public void run() {
-				try {
-					TelaAcumuloResgate window = new TelaAcumuloResgate();
-					window.open();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		try {
+			TelaAcumuloResgate window = new TelaAcumuloResgate();
+			window.open();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -76,7 +62,6 @@ public class TelaAcumuloResgate {
 	
 	protected void createContents() {
 		shell = new Shell();
-		shell.setBackground(SWTResourceManager.getColor(62, 62, 62));
 		shell.setSize(803, 449);
 		shell.setText("Bonus Vendas");
 		
@@ -99,12 +84,9 @@ public class TelaAcumuloResgate {
 		textNrCaixaDeBonus.addModifyListener(numeroListenerContainer[0]);
 		
 		
-		textSaldoAtual = new Text(shell, SWT.READ_ONLY);
-		textSaldoAtual.setText("0.00");
-		textSaldoAtual.setBackground(SWTResourceManager.getColor(62, 62, 62));
-		textSaldoAtual.setForeground(SWTResourceManager.getColor(255, 255, 255));
+		textSaldoAtual = new Text(shell, SWT.BORDER|SWT.READ_ONLY);
 		textSaldoAtual.setEnabled(false);
-		textSaldoAtual.setBounds(422, 67, 158, 31);
+		textSaldoAtual.setBounds(469, 64, 158, 31);
 		
 		
 		
@@ -139,9 +121,7 @@ public class TelaAcumuloResgate {
 		
 		// BUTTONS
 	
-		btnRadioAcumulo = new Button(shell, SWT.RADIO);
-		btnRadioAcumulo.setBackground(SWTResourceManager.getColor(62, 62, 62));
-		btnRadioAcumulo.setForeground(SWTResourceManager.getColor(255, 255, 255));
+		Button btnRadioAcumulo = new Button(shell, SWT.RADIO);
 		btnRadioAcumulo.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -154,8 +134,6 @@ public class TelaAcumuloResgate {
 		
 		
 		Button btnRadioResgate = new Button(shell, SWT.RADIO);
-		btnRadioResgate.setBackground(SWTResourceManager.getColor(62, 62, 62));
-		btnRadioResgate.setForeground(SWTResourceManager.getColor(255, 255, 255));
 		btnRadioResgate.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -306,50 +284,32 @@ public class TelaAcumuloResgate {
 		//DESIGN
 		
 		Label lblValor = new Label(shell, SWT.NONE);
-		lblValor.setForeground(SWTResourceManager.getColor(255, 255, 255));
-		lblValor.setBackground(SWTResourceManager.getColor(62, 62, 62));
 		lblValor.setBounds(358, 126, 81, 25);
-		lblValor.setText("Valor:");
+		lblValor.setText("Valor");
 		
 		Label lblSaldoAtual = new Label(shell, SWT.NONE);
-		lblSaldoAtual.setForeground(SWTResourceManager.getColor(255, 255, 255));
-		lblSaldoAtual.setBackground(SWTResourceManager.getColor(62, 62, 62));
 		lblSaldoAtual.setBounds(358, 67, 105, 25);
-		lblSaldoAtual.setText("Saldo Atual:");
+		lblSaldoAtual.setText("Saldo Atual");
 		
 		Label lblOperacao = new Label(shell, SWT.NONE);
-		lblOperacao.setBackground(SWTResourceManager.getColor(62, 62, 62));
-		lblOperacao.setForeground(SWTResourceManager.getColor(255, 255, 255));
 		lblOperacao.setBounds(39, 149, 81, 25);
 		lblOperacao.setText("Operação");
 		
 		Label lblTipoDeResgate = new Label(shell, SWT.NONE);
-		lblTipoDeResgate.setBackground(SWTResourceManager.getColor(62, 62, 62));
-		lblTipoDeResgate.setForeground(SWTResourceManager.getColor(255, 255, 255));
 		lblTipoDeResgate.setBounds(358, 204, 134, 25);
 		lblTipoDeResgate.setText("Tipo de resgate");
 		
 		Label lblNmeroDaCaixa = new Label(shell, SWT.NONE);
-		lblNmeroDaCaixa.setForeground(SWTResourceManager.getColor(255, 255, 255));
-		lblNmeroDaCaixa.setBackground(SWTResourceManager.getColor(62, 62, 62));
 		lblNmeroDaCaixa.setBounds(39, 59, 243, 25);
 		lblNmeroDaCaixa.setText("Número da Caixa de Bonus");
 		
 		Label lblBonus = new Label(shell, SWT.NONE);
-		lblBonus.setBackground(SWTResourceManager.getColor(62, 62, 62));
-		lblBonus.setForeground(SWTResourceManager.getColor(255, 255, 255));
 		lblBonus.setAlignment(SWT.CENTER);
 		lblBonus.setBounds(624, 10, 175, 48);
 		lblBonus.setText("Bonus");
 		
 		Label label = new Label(shell, SWT.SEPARATOR | SWT.VERTICAL);
 		label.setBounds(298, 59, 2, 245);
-		m_bindingContext = initDataBindings();
 
-	}
-	protected DataBindingContext initDataBindings() {
-		DataBindingContext bindingContext = new DataBindingContext();
-		//
-		return bindingContext;
 	}
 }
