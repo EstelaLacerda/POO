@@ -7,7 +7,7 @@ import br.gov.cesarschool.poo.bonusvendas.entidade.geral.Endereco;
 import br.gov.cesarschool.poo.bonusvendas.entidade.geral.Sexo;
 
 public class Vendedor implements Serializable{
-	
+	// teste de push
 	//Attributes
 	private String cpf;
 	private String nomeCompleto;
