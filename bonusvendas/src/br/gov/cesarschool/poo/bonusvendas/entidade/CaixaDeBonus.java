@@ -1,9 +1,10 @@
 package br.gov.cesarschool.poo.bonusvendas.entidade;
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import br.gov.cesarschool.poo.bonusvendas.entidade.geral.Registro;
 
-public class CaixaDeBonus implements Serializable {
+
+public class CaixaDeBonus extends Registro {
 
 	// Attributes
 	private long numero;
@@ -15,6 +16,10 @@ public class CaixaDeBonus implements Serializable {
 		this.numero = numero;
 	}
 	//Methods
+	public String getIdUnico() {
+		return this.numero+"";
+	}
+	
 	public void creditar(double valor) {
 		saldo += valor;
 		dataHoraAtualizacao = LocalDateTime.now();

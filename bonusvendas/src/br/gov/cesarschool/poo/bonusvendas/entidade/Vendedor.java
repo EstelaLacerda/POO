@@ -1,12 +1,12 @@
 package br.gov.cesarschool.poo.bonusvendas.entidade;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 import br.gov.cesarschool.poo.bonusvendas.entidade.geral.Endereco;
+import br.gov.cesarschool.poo.bonusvendas.entidade.geral.Registro;
 import br.gov.cesarschool.poo.bonusvendas.entidade.geral.Sexo;
 
-public class Vendedor implements Serializable{
+public class Vendedor extends Registro{
 	// teste de push
 	//Attributes
 	private String cpf;
@@ -29,6 +29,11 @@ public class Vendedor implements Serializable{
 	}
 	
 	//Methods
+	
+	public String getIdUnico() {
+		return this.cpf;
+	}
+	
 	public int calcularIdade() {
 		
 		LocalDate dataAtual = LocalDate.now();
