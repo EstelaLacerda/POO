@@ -130,7 +130,7 @@ public class TesteRelatorios extends TesteGeral {
 		for (Vendedor vendedor : VENDS) {
 			cadastroVend.incluir(vendedor, vendedor.getIdUnico());
 		}		
-		Vendedor[] vendsOrdNome = VendedorMediator.getInstance().gerarListagemClienteOrdenadaPorNome();
+		Vendedor[] vendsOrdNome = VendedorMediator.getInstancia().gerarListagemClienteOrdenadaPorNome();
 		Assertions.assertNotNull(vendsOrdNome);
 		Assertions.assertEquals(4, vendsOrdNome.length);				
 		assertVendedorNome(vendsOrdNome);
@@ -142,7 +142,7 @@ public class TesteRelatorios extends TesteGeral {
 		for (Vendedor vendedor : VENDS) {
 			cadastroVend.incluir(vendedor, vendedor.getIdUnico());
 		}		
-		Vendedor[] vendsOrdRenda = VendedorMediator.getInstance().gerarListagemClienteOrdenadaPorRenda();
+		Vendedor[] vendsOrdRenda = VendedorMediator.getInstancia().gerarListagemClienteOrdenadaPorRenda();
 		Assertions.assertNotNull(vendsOrdRenda);
 		Assertions.assertEquals(4, vendsOrdRenda.length);						
 		assertVendedorRenda(vendsOrdRenda);		
@@ -168,7 +168,7 @@ public class TesteRelatorios extends TesteGeral {
 		for (CaixaDeBonus caixaDeBonus : caixas) {
 			cadastroCaixaBonus.incluir(caixaDeBonus, caixaDeBonus.getIdUnico());
 		}	
-		CaixaDeBonus[] caixasRet = AcumuloResgateMediator.getInstance().listaCaixaDeBonusPorSaldoMaior(3000.0);
+		CaixaDeBonus[] caixasRet = AcumuloResgateMediator.getInstancia().listaCaixaDeBonusPorSaldoMaior(3000.0);
 		Assertions.assertNotNull(caixasRet);
 		Assertions.assertEquals(4, caixasRet.length);		
 		Assertions.assertEquals(4, caixasRet[0].getNumero());
@@ -199,7 +199,7 @@ public class TesteRelatorios extends TesteGeral {
 			LancamentoBonus lanc = (LancamentoBonus)object;
 			cadastroLanc.incluir(lanc, lanc.getIdUnico());
 		}
-		LancamentoBonus[] lancsRet = AcumuloResgateMediator.getInstance().listaLancamentosPorFaixaData(d1, d2);
+		LancamentoBonus[] lancsRet = AcumuloResgateMediator.getInstancia().listaLancamentosPorFaixaData(d1, d2);
 		Assertions.assertNotNull(lancsRet);
 		Assertions.assertEquals(4, lancsRet.length);
 		Assertions.assertEquals(5, lancsRet[0].getNumeroCaixaDeBonus());				

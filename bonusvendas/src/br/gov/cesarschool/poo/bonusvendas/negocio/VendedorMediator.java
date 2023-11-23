@@ -21,11 +21,11 @@ public class VendedorMediator {
     //Constructor
     public VendedorMediator() {
         this.repositorioVendedor = new VendedorDAO();
-        this.caixaDeBonusMediator = AcumuloResgateMediator.getInstance();
+        this.caixaDeBonusMediator = AcumuloResgateMediator.getInstancia();
     }
     
     		//Singleton
-    public static VendedorMediator getInstance() {
+    public static VendedorMediator getInstancia() {
         if (instance == null) {
             instance = new VendedorMediator();
         }

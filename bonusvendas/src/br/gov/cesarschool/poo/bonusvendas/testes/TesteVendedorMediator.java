@@ -138,7 +138,7 @@ public class TesteVendedorMediator extends TesteGeral {
 			PAIS_NAO_INFORMADO			
 	};
 	
-	private VendedorMediator mediator = VendedorMediator.getInstance();
+	private VendedorMediator mediator = VendedorMediator.getInstancia();
 	
 	@Test
 	public void testCpfNaoPreenchido() {

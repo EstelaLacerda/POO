@@ -18,9 +18,7 @@ public class ComparadorLancamentoBonusDHDec implements Comparator<LancamentoBonu
         return instance;
     }
 
-    @Override
     public int compare(LancamentoBonus l1, LancamentoBonus l2) {
-        // Inverting the comparison for descending order
         return l2.getDataHoraLancamento().compareTo(l1.getDataHoraLancamento());
     }
 }

@@ -33,7 +33,7 @@ public class AcumuloResgateMediator {
     }
 	
 			//Singleton
-	public static AcumuloResgateMediator getInstance() {
+	public static AcumuloResgateMediator getInstancia() {
         if (instance == null) {
             instance = new AcumuloResgateMediator();
         }
