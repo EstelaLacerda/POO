@@ -21,16 +21,6 @@ public class ComparadorVendedorRenda implements Comparador{
 		Vendedor v1 = (Vendedor)o1;
 		Vendedor v2 = (Vendedor)o2;
 		
-		int comp = (int)(v1.getRenda() - v2.getRenda());
-		
-		if(comp>0) {
-			return 1;
-		}
-		else if(comp<0) {
-			return -1;
-		}
-		else {
-			return 0;
-		}
+		return Double.compare(v1.getRenda(), v2.getRenda());
 	}
 }

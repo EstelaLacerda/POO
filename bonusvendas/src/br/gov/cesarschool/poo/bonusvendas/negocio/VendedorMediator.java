@@ -7,6 +7,7 @@ import br.gov.cesarschool.poo.bonusvendas.entidade.Vendedor;
 import br.gov.cesarschool.poo.bonusvendas.entidade.geral.Endereco;
 import br.gov.cesarschool.poo.bonusvendas.negocio.geral.StringUtil;
 import br.gov.cesarschool.poo.bonusvendas.negocio.geral.ValidadorCPF;
+import br.gov.cesarschool.poo.bonusvendas.util.Ordenadora;
 
 public class VendedorMediator {
 	
@@ -131,7 +132,25 @@ public class VendedorMediator {
         if (StringUtil.ehNuloOuBranco(endereco.getPais())) {
             return "Pais nao informado";
         }
-
+        
         return null;
     }
+    
+    public Vendedor[] gerarListagemClienteOrdenadaPorRenda() {
+        Vendedor[] vendedores = repositorioVendedor.buscarTodos();
+
+
+        Ordenadora.ordenar(vendedores, ComparadorVendedorRenda.getInstance());
+
+        return vendedores;
+    }
+    public Vendedor[] gerarListagemClienteOrdenadaPorNome() {
+    	
+        Vendedor[] vendedores = repositorioVendedor.buscarTodos();
+        Ordenadora.ordenar(vendedores, ComparadorVendedorNome.getInstance());
+        
+        return vendedores;
+    }
+    
+    
 }

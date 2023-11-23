@@ -2,14 +2,20 @@ package br.gov.cesarschool.poo.bonusvendas.negocio;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 import br.gov.cesarschool.poo.bonusvendas.dao.CaixaDeBonusDAO;
 import br.gov.cesarschool.poo.bonusvendas.dao.LancamentoBonusDAO;
 import br.gov.cesarschool.poo.bonusvendas.entidade.CaixaDeBonus;
+import br.gov.cesarschool.poo.bonusvendas.entidade.LancamentoBonus;
 import br.gov.cesarschool.poo.bonusvendas.entidade.LancamentoBonusCredito;
 import br.gov.cesarschool.poo.bonusvendas.entidade.LancamentoBonusDebito;
 import br.gov.cesarschool.poo.bonusvendas.entidade.TipoResgate;
 import br.gov.cesarschool.poo.bonusvendas.entidade.Vendedor;
+import br.gov.cesarschool.poo.bonusvendas.util.Ordenadora;
 
 public class AcumuloResgateMediator {
 	//Attributes
@@ -111,5 +117,54 @@ public class AcumuloResgateMediator {
 	public CaixaDeBonus buscar(long numeroCaixaDeBonus) {
     	return repositorioCaixaDeBonus.buscar(numeroCaixaDeBonus);
     }
+	
+	
+	public CaixaDeBonus[] listaCaixaDeBonusPorSaldoMaior(double saldoInicial) {
+        CaixaDeBonus[] caixas = repositorioCaixaDeBonus.buscarTodos();
+
+        caixas = filtrarPorSaldoMaior(caixas, saldoInicial);
+
+        Ordenadora.ordenar(caixas, ComparadorCaixaDeBonusSaldoDec.getInstance());
+
+        return caixas;
+    }
+
+    private CaixaDeBonus[] filtrarPorSaldoMaior(CaixaDeBonus[] caixas, double saldoInicial) {
+
+        int count = 0;
+        for (CaixaDeBonus caixa : caixas) {
+            if (caixa.getSaldo() >= saldoInicial) {
+                count++;
+            }
+        }
+
+        CaixaDeBonus[] result = new CaixaDeBonus[count];
+        int index = 0;
+        for (CaixaDeBonus caixa : caixas) {
+            if (caixa.getSaldo() >= saldoInicial) {
+                result[index++] = caixa;
+            }
+        }
+
+        return result;
+    }
+    
+    public LancamentoBonus[] listaLancamentosPorFaixaData(LocalDate d1, LocalDate d2) {
+        LancamentoBonus[] todosLancamentos = repositorioLancamento.buscarTodos();
+        List<LancamentoBonus> lancamentosFiltrados = new ArrayList<>();
+
+        for (LancamentoBonus lancamento : todosLancamentos) {
+            LocalDate dataLancamento = lancamento.getDataHoraLancamento().toLocalDate();
+            if (!dataLancamento.isBefore(d1) && !dataLancamento.isAfter(d2)) {
+                lancamentosFiltrados.add(lancamento);
+            }
+        }
+
+        Collections.sort(lancamentosFiltrados, ComparadorLancamentoBonusDHDec.getInstance());
+
+        return lancamentosFiltrados.toArray(new LancamentoBonus[lancamentosFiltrados.size()]);
+    }
+
+    
 	
 }

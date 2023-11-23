@@ -33,14 +33,14 @@ public class DAOGenerico {
 		}		
 	}
 	public Registro buscar(String id) {
-		// Esta opera��o entre () vai ter significado mais � frente! 
+
 		return (Registro)cadastro.buscar(BRANCO + id);
 	}
 	public Registro[] buscarTodos() {
 		Serializable[] rets = cadastro.buscarTodos(Registro.class);
 		Registro[] reg = new Registro[rets.length];
 		for(int i=0; i<rets.length; i++) {
-			// Esta opera��o entre () vai ter significado mais � frente! 
+
 			reg[i] = (Registro)rets[i];
 		}
 		return reg;
