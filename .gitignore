@@ -29,7 +29,7 @@ replay_pid*
 .classpath
 /bin/
 
-/Vendedor
-/CaixaDeBonus
-/LancamentoBonus
+/bonusvendas/Vendedor/
+/bonusvendas/CaixaDeBonus/
+/bonusvendas/LancamentoBonus/
 
